@@ -30,4 +30,24 @@
     return self;
 }
 
+-(instancetype)initWithName:(NSString *)name
+                   category:(NSString *)category
+                  platforms:(NSArray *)platforms
+                      score:(NSInteger *)score
+                      image:(UIImageView *)image
+                    seasons:(NSArray *)seasons{
+    return[self initWithName:name
+                    category:category
+                   platforms:platforms
+                       link :[NSURL URLWithString:@""]
+                       notes:@""
+                       score:score
+                       image:image
+                     seasons:seasons];
+}
+
+-(NSString *)displayName{
+    return self.name;
+}
+
 @end

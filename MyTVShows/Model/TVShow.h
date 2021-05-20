@@ -23,6 +23,14 @@ NS_ASSUME_NONNULL_BEGIN
                     seasons:(NSArray *)seasons;
 
 
+-(instancetype)initWithName:(NSString *)name
+                   category:(NSString *)category
+                  platforms:(NSArray *)platforms
+                      score:(NSInteger *)score
+                      image:(UIImageView *)image
+                    seasons:(NSArray *)seasons;
+
+
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *category;
 @property (nonatomic, strong) NSArray *platforms;
@@ -31,6 +39,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) NSInteger *score;
 @property (nonatomic, strong) UIImageView *image;
 @property (nonatomic, strong) NSArray *seasons;
+
+@property (nonatomic, readonly) NSString *displayName;
 
 @end
 

@@ -7,8 +7,11 @@
 //
 
 #import "ShowListTableViewController.h"
+#import "TVShowList.h"
 
 @interface ShowListTableViewController ()
+
+@property (nonatomic, strong) TVShowList *shows;
 
 @end
 
@@ -16,35 +19,44 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"MyTVShows";
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.shows = [[TVShowList alloc] init];
+    
+    
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 #warning Incomplete implementation, return the number of sections
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete implementation, return the number of rows
-    return 0;
+    return self.shows.size;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
     
     // Configure the cell...
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TVShowCell" forIndexPath:indexPath];
+    
+    // Configure the cell...
+    TVShow *s = [self.shows getAtIndex:indexPath.row];
+    
+    cell.textLabel.text = s.displayName;
     
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.
@@ -80,14 +92,22 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if([segue.identifier isEqualToString:@"ShowShowDetail"]){
+    if([segue.destinationViewController isKindOfClass:[FriendDetailViewController class]]){
+        FriendDetailViewController *vc = (FriendDetailViewController *)segue.destinationViewController;
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+        Friend *f = [self.friends getAtIndex:indexPath.row];
+        vc.theFriend = f;
+    }
 }
-*/
+
 
 @end

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		005A1A0E26569FC200FAAEDF /* TVShowList.m in Sources */ = {isa = PBXBuildFile; fileRef = 005A1A0D26569FC200FAAEDF /* TVShowList.m */; };
 		005C3353265566EA003E5607 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 005C3352265566EA003E5607 /* AppDelegate.m */; };
 		005C3356265566EA003E5607 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 005C3355265566EA003E5607 /* SceneDelegate.m */; };
 		005C335C265566EA003E5607 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 005C335A265566EA003E5607 /* Main.storyboard */; };
@@ -21,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		005A1A0C26569FC200FAAEDF /* TVShowList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TVShowList.h; sourceTree = "<group>"; };
+		005A1A0D26569FC200FAAEDF /* TVShowList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TVShowList.m; sourceTree = "<group>"; };
 		005C334E265566EA003E5607 /* MyTVShows.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyTVShows.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		005C3351265566EA003E5607 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		005C3352265566EA003E5607 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -96,6 +99,8 @@
 			children = (
 				005C337326556F85003E5607 /* TVShow.h */,
 				005C337426556F85003E5607 /* TVShow.m */,
+				005A1A0C26569FC200FAAEDF /* TVShowList.h */,
+				005A1A0D26569FC200FAAEDF /* TVShowList.m */,
 				005C33762655844E003E5607 /* Episode.h */,
 				005C33772655844E003E5607 /* Episode.m */,
 				005C3379265586CA003E5607 /* Season.h */,
@@ -175,6 +180,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				005C3353265566EA003E5607 /* AppDelegate.m in Sources */,
+				005A1A0E26569FC200FAAEDF /* TVShowList.m in Sources */,
 				005C336F26556932003E5607 /* ShowListTableViewController.m in Sources */,
 				005C337226556C86003E5607 /* ShowDetailTableViewController.m in Sources */,
 				005C337526556F85003E5607 /* TVShow.m in Sources */,
