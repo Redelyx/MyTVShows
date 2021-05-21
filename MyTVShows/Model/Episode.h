@@ -12,9 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Episode : NSObject
 
-@property (nonatomic) NSInteger *score;
+@property (nonatomic) NSNumber *score;
 
--(instancetype)initWithScore:(NSInteger *)score;
+-(instancetype)initWithScore:(NSNumber *)score;
 
 @end
 

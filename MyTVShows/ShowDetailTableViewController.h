@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TVShow.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ShowDetailTableViewController : UITableViewController
+
+@property (nonatomic, strong) TVShow *theShow;
 
 @end
 

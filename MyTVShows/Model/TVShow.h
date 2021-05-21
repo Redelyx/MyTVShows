@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "Season.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -16,31 +17,48 @@ NS_ASSUME_NONNULL_BEGIN
 -(instancetype)initWithName:(NSString *)name
                    category:(NSString *)category
                   platforms:(NSArray *)platforms
-                       link:(NSURL *)link
+                       link:(NSString *)link
                       notes:(NSString *)notes
-                      score:(NSInteger *)score
-                      image:(UIImageView *)image
+                      score:(NSNumber *)score
+                      image:(UIImage *)image
                     seasons:(NSArray *)seasons;
 
 
 -(instancetype)initWithName:(NSString *)name
                    category:(NSString *)category
                   platforms:(NSArray *)platforms
-                      score:(NSInteger *)score
-                      image:(UIImageView *)image
+                      score:(NSNumber *)score
+                      image:(UIImage *)image
+                    seasons:(NSArray *)seasons;
+
+-(instancetype)initWithName:(NSString *)name
+                   category:(NSString *)category
+                  platforms:(NSArray *)platforms
+                      score:(NSNumber *)score
+                    seasons:(NSArray *)seasons;
+
+-(instancetype)initWithName:(NSString *)name
+                   category:(NSString *)category
+                  platforms:(NSArray *)platforms
+                       link:(NSString *)link
+                      notes:(NSString *)notes
+                      score:(NSNumber *)score
                     seasons:(NSArray *)seasons;
 
 
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *category;
 @property (nonatomic, strong) NSArray *platforms;
-@property (nonatomic, strong) NSURL *link;
+@property (nonatomic, strong) NSString *link;
 @property (nonatomic, strong) NSString *notes;
-@property (nonatomic) NSInteger *score;
-@property (nonatomic, strong) UIImageView *image;
+@property (nonatomic) NSNumber *score;
+@property (nonatomic, strong) UIImage *image;
 @property (nonatomic, strong) NSArray *seasons;
 
 @property (nonatomic, readonly) NSString *displayName;
+
+-(long)seasonSize;
+-(Season *)getSeasonNumber:(NSInteger)index;
 
 @end
 

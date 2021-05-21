@@ -10,7 +10,7 @@
 
 @implementation Episode
 
--(instancetype)initWithScore:(NSInteger *)score{
+-(instancetype)initWithScore:(NSNumber *)score{
     if(self = [super init]){
         _score = score;
     }

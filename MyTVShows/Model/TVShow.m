@@ -12,10 +12,10 @@
 -(instancetype)initWithName:(NSString *)name
                    category:(NSString *)category
                   platforms:(NSArray *)platforms
-                       link:(NSURL *)link
+                       link:(NSString *)link
                       notes:(NSString *)notes
-                      score:(NSInteger *)score
-                      image:(UIImageView *)image
+                      score:(NSNumber *)score
+                      image:(UIImage *)image
                     seasons:(NSArray *)seasons{
     if(self = [super init]){
         _name = [name copy];
@@ -33,21 +33,61 @@
 -(instancetype)initWithName:(NSString *)name
                    category:(NSString *)category
                   platforms:(NSArray *)platforms
-                      score:(NSInteger *)score
-                      image:(UIImageView *)image
+                      score:(NSNumber *)score
+                      image:(UIImage *)image
                     seasons:(NSArray *)seasons{
     return[self initWithName:name
                     category:category
                    platforms:platforms
-                       link :[NSURL URLWithString:@""]
+                       link :@""
                        notes:@""
                        score:score
                        image:image
                      seasons:seasons];
 }
 
+-(instancetype)initWithName:(NSString *)name
+                   category:(NSString *)category
+                  platforms:(NSArray *)platforms
+                      score:(NSNumber *)score
+                    seasons:(NSArray *)seasons{
+    return[self initWithName:name
+                    category:category
+                   platforms:platforms
+                       link :@""
+                       notes:@""
+                       score:score
+                       image:[UIImage imageNamed:@""]
+                     seasons:seasons];
+}
+
+-(instancetype)initWithName:(NSString *)name
+                   category:(NSString *)category
+                  platforms:(NSArray *)platforms
+                       link:(NSString *)link
+                      notes:(NSString *)notes
+                      score:(NSNumber *)score
+                    seasons:(NSArray *)seasons{
+    return[self initWithName:name
+                    category:category
+                   platforms:platforms
+                       link :@""
+                       notes:@""
+                       score:score
+                       image:[UIImage imageNamed:@""]
+                     seasons:seasons];
+}
+
 -(NSString *)displayName{
     return self.name;
+}
+
+-(long)seasonSize{
+    return self.seasons.count;
+}
+
+-(Season *)getSeasonNumber:(NSInteger)index{
+    return [self.seasons objectAtIndex:index];
 }
 
 @end

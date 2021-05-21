@@ -7,7 +7,10 @@
 //
 
 #import "ShowListTableViewController.h"
+#import "ShowDetailTableViewController.h"
 #import "TVShowList.h"
+#import "Season.h"
+#import "Episode.h"
 
 @interface ShowListTableViewController ()
 
@@ -28,18 +31,28 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.shows = [[TVShowList alloc] init];
     
+    Episode *e = [[Episode alloc] initWithScore:[NSNumber numberWithInt:0]];
+    NSArray *es = [NSArray arrayWithObjects:e, e, e, e, e, e, e, e, e, e, e, nil];
+    Season *se = [[Season alloc]initWithEpisodes:es];
+    TVShow *s = [[TVShow alloc] initWithName:@"Fargo"
+                                    category:@"Action"
+                                   platforms:[NSArray arrayWithObjects:@"PrimeVideo", nil]
+                                        link:@"www.primevideo.com"
+                                       notes:@"fargo è una serie tv dei fratelli cohen 	ispirata al film fargo, non sono veramente accadute le cose che dice"
+                                       score:[NSNumber numberWithInt:4]
+                                     seasons:[NSArray arrayWithObjects:se, nil]];
+
+    [self.shows add:s];
+    
     
 }
 
-#pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
     return self.shows.size;
 }
 
@@ -100,12 +113,13 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     if([segue.identifier isEqualToString:@"ShowShowDetail"]){
-    if([segue.destinationViewController isKindOfClass:[FriendDetailViewController class]]){
-        FriendDetailViewController *vc = (FriendDetailViewController *)segue.destinationViewController;
-        
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-        Friend *f = [self.friends getAtIndex:indexPath.row];
-        vc.theFriend = f;
+        if([segue.destinationViewController isKindOfClass:[ShowDetailTableViewController class]]){
+            ShowDetailTableViewController *vc = (ShowDetailTableViewController *)segue.destinationViewController;
+            
+            NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+            TVShow *s = [self.shows getAtIndex:indexPath.row];
+            vc.theShow = s;
+        }
     }
 }
 
