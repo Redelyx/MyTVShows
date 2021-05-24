@@ -71,8 +71,8 @@
     return[self initWithName:name
                     category:category
                    platforms:platforms
-                       link :@""
-                       notes:@""
+                       link :link
+                       notes:notes
                        score:score
                        image:[UIImage imageNamed:@""]
                      seasons:seasons];

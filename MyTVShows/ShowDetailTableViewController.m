@@ -13,7 +13,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *categoryLabel;
 @property (weak, nonatomic) IBOutlet UILabel *platformsLabel;
 @property (weak, nonatomic) IBOutlet UITextView *linkTextView;
-@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *notesLabel;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 
 @end
@@ -32,9 +32,8 @@
     self.linkTextView.editable = NO;
     self.linkTextView.dataDetectorTypes = UIDataDetectorTypeLink;
     self.linkTextView.text = self.theShow.link;
-    self.descriptionLabel.text = self.theShow.notes;
-    self.scoreLabel.text = [self.theShow.score stringValue];
-    
+    self.notesLabel.text = self.theShow.notes;
+    self.scoreLabel.text = [NSString stringWithFormat:@"%@/5", [self.theShow.score stringValue]];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     

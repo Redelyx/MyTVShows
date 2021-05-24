@@ -1,75 +1,48 @@
 //
-//  ShowListTableViewController.m
+//  AddShowTableViewController.m
 //  MyTVShows
 //
-//  Created by Alice on 19/05/2021.
+//  Created by Alice on 24/05/2021.
 //  Copyright © 2021 Alice. All rights reserved.
 //
 
-#import "ShowListTableViewController.h"
-#import "ShowDetailTableViewController.h"
-#import "TVShowList.h"
-#import "Season.h"
-#import "Episode.h"
+#import "AddShowTableViewController.h"
 
-@interface ShowListTableViewController ()
-
-@property (nonatomic, strong) TVShowList *shows;
+@interface AddShowTableViewController ()
 
 @end
 
-@implementation ShowListTableViewController
+@implementation AddShowTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"MyTVShows";
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    self.shows = [[TVShowList alloc] init];
-    
-    Episode *e = [[Episode alloc] initWithScore:[NSNumber numberWithInt:0]];
-    NSArray *es = [NSArray arrayWithObjects:e, e, e, e, e, e, e, e, e, e, e, nil];
-    Season *se = [[Season alloc]initWithEpisodes:es];
-    TVShow *s = [[TVShow alloc] initWithName:@"Fargo"
-                                    category:@"Action"
-                                   platforms:[NSArray arrayWithObjects:@"PrimeVideo", nil]
-                                        link:@"www.primevideo.com"
-                                       notes:@"Fargo is a Tv series based on the film Fargo. Despite all of the disclaimers not all the stories in the series are true."
-                                       score:[NSNumber numberWithInt:4]
-                                     seasons:[NSArray arrayWithObjects:se, nil]];
-
-    [self.shows add:s];
-    
-    
 }
 
+#pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.shows.size;
+    return 9;
 }
 
-
+/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
     
     // Configure the cell...
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TVShowCell" forIndexPath:indexPath];
-    
-    // Configure the cell...
-    TVShow *s = [self.shows getAtIndex:indexPath.row];
-    
-    cell.textLabel.text = s.displayName;
     
     return cell;
 }
-
+*/
 
 /*
 // Override to support conditional editing of the table view.
@@ -105,23 +78,14 @@
 }
 */
 
-
+/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    if([segue.identifier isEqualToString:@"ShowShowDetail"]){
-        if([segue.destinationViewController isKindOfClass:[ShowDetailTableViewController class]]){
-            ShowDetailTableViewController *vc = (ShowDetailTableViewController *)segue.destinationViewController;
-            
-            NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-            TVShow *s = [self.shows getAtIndex:indexPath.row];
-            vc.theShow = s;
-        }
-    }
 }
-
+*/
 
 @end
