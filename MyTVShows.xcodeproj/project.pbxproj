@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		0051888E265BFBB6004EBC2A /* AddShowTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0051888D265BFBB6004EBC2A /* AddShowTableViewController.m */; };
+		00518891265D3619004EBC2A /* SeasonList.m in Sources */ = {isa = PBXBuildFile; fileRef = 00518890265D3619004EBC2A /* SeasonList.m */; };
+		00518894265D362F004EBC2A /* EpisodeList.m in Sources */ = {isa = PBXBuildFile; fileRef = 00518893265D362F004EBC2A /* EpisodeList.m */; };
+		00518897265D5AB4004EBC2A /* SeasonDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00518896265D5AB4004EBC2A /* SeasonDetailTableViewController.m */; };
+		0051889A265D6255004EBC2A /* EpisodeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00518899265D6255004EBC2A /* EpisodeDetailViewController.m */; };
 		005A1A0E26569FC200FAAEDF /* TVShowList.m in Sources */ = {isa = PBXBuildFile; fileRef = 005A1A0D26569FC200FAAEDF /* TVShowList.m */; };
 		005C3353265566EA003E5607 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 005C3352265566EA003E5607 /* AppDelegate.m */; };
 		005C3356265566EA003E5607 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 005C3355265566EA003E5607 /* SceneDelegate.m */; };
@@ -25,6 +29,14 @@
 /* Begin PBXFileReference section */
 		0051888C265BFBB6004EBC2A /* AddShowTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddShowTableViewController.h; sourceTree = "<group>"; };
 		0051888D265BFBB6004EBC2A /* AddShowTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddShowTableViewController.m; sourceTree = "<group>"; };
+		0051888F265D3619004EBC2A /* SeasonList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SeasonList.h; sourceTree = "<group>"; };
+		00518890265D3619004EBC2A /* SeasonList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SeasonList.m; sourceTree = "<group>"; };
+		00518892265D362F004EBC2A /* EpisodeList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EpisodeList.h; sourceTree = "<group>"; };
+		00518893265D362F004EBC2A /* EpisodeList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EpisodeList.m; sourceTree = "<group>"; };
+		00518895265D5AB4004EBC2A /* SeasonDetailTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SeasonDetailTableViewController.h; sourceTree = "<group>"; };
+		00518896265D5AB4004EBC2A /* SeasonDetailTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SeasonDetailTableViewController.m; sourceTree = "<group>"; };
+		00518898265D6255004EBC2A /* EpisodeDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EpisodeDetailViewController.h; sourceTree = "<group>"; };
+		00518899265D6255004EBC2A /* EpisodeDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EpisodeDetailViewController.m; sourceTree = "<group>"; };
 		005A1A0C26569FC200FAAEDF /* TVShowList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TVShowList.h; sourceTree = "<group>"; };
 		005A1A0D26569FC200FAAEDF /* TVShowList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TVShowList.m; sourceTree = "<group>"; };
 		005C334E265566EA003E5607 /* MyTVShows.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyTVShows.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -84,13 +96,17 @@
 				005C3354265566EA003E5607 /* SceneDelegate.h */,
 				005C3355265566EA003E5607 /* SceneDelegate.m */,
 				005C335A265566EA003E5607 /* Main.storyboard */,
-				0051888C265BFBB6004EBC2A /* AddShowTableViewController.h */,
-				0051888D265BFBB6004EBC2A /* AddShowTableViewController.m */,
-				005C337C265587CB003E5607 /* Model */,
 				005C336D26556932003E5607 /* ShowListTableViewController.h */,
 				005C336E26556932003E5607 /* ShowListTableViewController.m */,
 				005C337026556C86003E5607 /* ShowDetailTableViewController.h */,
 				005C337126556C86003E5607 /* ShowDetailTableViewController.m */,
+				00518895265D5AB4004EBC2A /* SeasonDetailTableViewController.h */,
+				00518896265D5AB4004EBC2A /* SeasonDetailTableViewController.m */,
+				00518898265D6255004EBC2A /* EpisodeDetailViewController.h */,
+				00518899265D6255004EBC2A /* EpisodeDetailViewController.m */,
+				0051888C265BFBB6004EBC2A /* AddShowTableViewController.h */,
+				0051888D265BFBB6004EBC2A /* AddShowTableViewController.m */,
+				005C337C265587CB003E5607 /* Model */,
 				005C335D265566EC003E5607 /* Assets.xcassets */,
 				005C335F265566EC003E5607 /* LaunchScreen.storyboard */,
 				005C3362265566EC003E5607 /* Info.plist */,
@@ -106,10 +122,14 @@
 				005C337426556F85003E5607 /* TVShow.m */,
 				005A1A0C26569FC200FAAEDF /* TVShowList.h */,
 				005A1A0D26569FC200FAAEDF /* TVShowList.m */,
-				005C33762655844E003E5607 /* Episode.h */,
-				005C33772655844E003E5607 /* Episode.m */,
 				005C3379265586CA003E5607 /* Season.h */,
 				005C337A265586CA003E5607 /* Season.m */,
+				0051888F265D3619004EBC2A /* SeasonList.h */,
+				00518890265D3619004EBC2A /* SeasonList.m */,
+				005C33762655844E003E5607 /* Episode.h */,
+				005C33772655844E003E5607 /* Episode.m */,
+				00518892265D362F004EBC2A /* EpisodeList.h */,
+				00518893265D362F004EBC2A /* EpisodeList.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -185,6 +205,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				005C3353265566EA003E5607 /* AppDelegate.m in Sources */,
+				00518894265D362F004EBC2A /* EpisodeList.m in Sources */,
+				00518891265D3619004EBC2A /* SeasonList.m in Sources */,
+				0051889A265D6255004EBC2A /* EpisodeDetailViewController.m in Sources */,
 				005A1A0E26569FC200FAAEDF /* TVShowList.m in Sources */,
 				0051888E265BFBB6004EBC2A /* AddShowTableViewController.m in Sources */,
 				005C336F26556932003E5607 /* ShowListTableViewController.m in Sources */,
@@ -194,6 +217,7 @@
 				005C337B265586CA003E5607 /* Season.m in Sources */,
 				005C3364265566EC003E5607 /* main.m in Sources */,
 				005C3356265566EA003E5607 /* SceneDelegate.m in Sources */,
+				00518897265D5AB4004EBC2A /* SeasonDetailTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

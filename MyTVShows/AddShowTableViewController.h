@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface AddShowTableViewController : UITableViewController
+@interface AddShowTableViewController : UITableViewController <UIPickerViewDelegate, UIPickerViewDataSource>
 
 @end
 

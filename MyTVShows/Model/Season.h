@@ -7,15 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Episode.h"
+#import "EpisodeList.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface Season : NSObject
 
--(instancetype)initWithEpisodes:(NSArray *)episodes;
+-(instancetype)initWithName:(NSString *)name
+                   Episodes:(EpisodeList *)episodes;
+-(instancetype)initWithEpisodes:(EpisodeList *)episodes;
+-(instancetype)initWithSeasonNumber:(int)number
+                           Episodes:(EpisodeList *)episodes;
+-(long)size;
 
-@property (nonatomic, strong) NSArray *episodes;
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) EpisodeList *episodes;
 
 @end
 

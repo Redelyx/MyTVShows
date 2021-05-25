@@ -1,20 +1,20 @@
 //
-//  TVShowList.m
+//  SeasonList.m
 //  MyTVShows
 //
-//  Created by Alice on 20/05/2021.
+//  Created by Alice on 25/05/2021.
 //  Copyright © 2021 Alice. All rights reserved.
 //
 
-#import "TVShowList.h"
+#import "SeasonList.h"
 
-@interface TVShowList ()
+@interface SeasonList ()
 
 @property (nonatomic, strong) NSMutableArray *list;
 
 @end
 
-@implementation TVShowList
+@implementation SeasonList
 
 -(instancetype)init{
     if(self = [super init]){
@@ -27,17 +27,16 @@
     return self.list;
 }
 
--(void)add:(TVShow *)f{
+-(void)add:(Season *)f{
     [self.list addObject:f];
 }
 
--(TVShow *)getAtIndex:(NSInteger)index{
+-(Season *)getAtIndex:(NSInteger)index{
     return [self.list objectAtIndex:index];
 }
 
 -(long)size{
     return self.list.count;
 }
-
 
 @end

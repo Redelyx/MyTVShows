@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "Season.h"
+#import "SeasonList.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -21,21 +21,20 @@ NS_ASSUME_NONNULL_BEGIN
                       notes:(NSString *)notes
                       score:(NSNumber *)score
                       image:(UIImage *)image
-                    seasons:(NSArray *)seasons;
-
+                    seasons:(SeasonList *)seasons;
 
 -(instancetype)initWithName:(NSString *)name
                    category:(NSString *)category
                   platforms:(NSArray *)platforms
                       score:(NSNumber *)score
                       image:(UIImage *)image
-                    seasons:(NSArray *)seasons;
+                    seasons:(SeasonList *)seasons;
 
 -(instancetype)initWithName:(NSString *)name
                    category:(NSString *)category
                   platforms:(NSArray *)platforms
                       score:(NSNumber *)score
-                    seasons:(NSArray *)seasons;
+                    seasons:(SeasonList *)seasons;
 
 -(instancetype)initWithName:(NSString *)name
                    category:(NSString *)category
@@ -43,7 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
                        link:(NSString *)link
                       notes:(NSString *)notes
                       score:(NSNumber *)score
-                    seasons:(NSArray *)seasons;
+                    seasons:(SeasonList *)seasons;
 
 
 @property (nonatomic, strong) NSString *name;
@@ -53,12 +52,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *notes;
 @property (nonatomic) NSNumber *score;
 @property (nonatomic, strong) UIImage *image;
-@property (nonatomic, strong) NSArray *seasons;
+@property (nonatomic, copy) SeasonList *seasons;
 
 @property (nonatomic, readonly) NSString *displayName;
 
--(long)seasonSize;
--(Season *)getSeasonNumber:(NSInteger)index;
+-(long)size;
+-(Season *)getSeasonNumber:(long)index;
 
 @end
 

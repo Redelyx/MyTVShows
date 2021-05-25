@@ -1,39 +1,25 @@
 //
-//  ShowDetailTableViewController.m
+//  SeasonDetailTableViewController.m
 //  MyTVShows
 //
-//  Created by Alice on 19/05/2021.
+//  Created by Alice on 25/05/2021.
 //  Copyright © 2021 Alice. All rights reserved.
 //
 
-#import "ShowDetailTableViewController.h"
 #import "SeasonDetailTableViewController.h"
+#import "EpisodeDetailViewController.h"
+#import "SeasonList.h"
+@interface SeasonDetailTableViewController ()
 
-@interface ShowDetailTableViewController ()
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
-@property (weak, nonatomic) IBOutlet UILabel *categoryLabel;
-@property (weak, nonatomic) IBOutlet UILabel *platformsLabel;
-@property (weak, nonatomic) IBOutlet UITextView *linkTextView;
-@property (weak, nonatomic) IBOutlet UILabel *notesLabel;
-@property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 
 @end
 
-@implementation ShowDetailTableViewController
+@implementation SeasonDetailTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = self.theShow.name;
+    self.title = self.theSeason.name;
     
-    self.imageView.image = [UIImage imageNamed:@""];
-    
-    self.categoryLabel.text = self.theShow.category;
-    self.platformsLabel.text = self.theShow.platforms[0];
-    self.linkTextView.editable = NO;
-    self.linkTextView.dataDetectorTypes = UIDataDetectorTypeLink;
-    self.linkTextView.text = self.theShow.link;
-    self.notesLabel.text = self.theShow.notes;
-    self.scoreLabel.text = [NSString stringWithFormat:@"%@/5", self.theShow.score];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -48,19 +34,20 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.theShow.size;
+    return self.theSeason.size;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"seasonCell" forIndexPath:indexPath];
+   
+ 
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"episodeCell" forIndexPath:indexPath];
     
     // Configure the cell...
-    
-    Season *s = [self.theShow.seasons getAtIndex:indexPath.row];
+    Episode *s = [self.theSeason.episodes getAtIndex:indexPath.row];
     
     cell.textLabel.text = s.name;
-      
+    
     return cell;
 }
 
@@ -101,21 +88,21 @@
 
 
 #pragma mark - Navigation
-
+/*
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if([segue.identifier isEqualToString:@"ShowSeasonDetail"]){
-        if([segue.destinationViewController isKindOfClass:[SeasonDetailTableViewController class]]){
-            SeasonDetailTableViewController *vc = (SeasonDetailTableViewController *)segue.destinationViewController;
-            
-            NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-            Season *s = [self.theShow.seasons getAtIndex:indexPath.row];
-            NSLog([NSString stringWithFormat:@"%ld, %@", indexPath.row, s.name]);
-            
-            vc.theSeason = s;
+    if([segue.identifier isEqualToString:@"ShowEpisodeDetail"]){
+        if([segue.destinationViewController isKindOfClass:[EpisodeDetailViewController class]]){
+        EpisodeDetailViewController *vc = (EpisodeDetailViewController *)segue.destinationViewController;
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+        Episode *s = [self.season.episodes getAtIndex:indexPath.row];
+            vc.theEpisode = s;
         }
     }
 }
+*/
 
-
+- (IBAction)checkButton:(id)sender {
+}
 @end

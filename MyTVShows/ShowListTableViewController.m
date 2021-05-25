@@ -9,8 +9,6 @@
 #import "ShowListTableViewController.h"
 #import "ShowDetailTableViewController.h"
 #import "TVShowList.h"
-#import "Season.h"
-#import "Episode.h"
 
 @interface ShowListTableViewController ()
 
@@ -31,33 +29,38 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.shows = [[TVShowList alloc] init];
     
-    Episode *e = [[Episode alloc] initWithScore:[NSNumber numberWithInt:0]];
-    NSArray *es = [NSArray arrayWithObjects:e, e, e, e, e, e, e, e, e, e, e, nil];
-    Season *se = [[Season alloc]initWithEpisodes:es];
+    EpisodeList *ep = [[EpisodeList alloc] init];
+    for (int i = 0; i<11; i++)[ep add];
+    
+    SeasonList *ses = [[SeasonList alloc] init];
+    [ses add:[[Season alloc]initWithSeasonNumber:ses.size+1 Episodes:ep]];
+    
+    NSLog(@"%ld", [ep size]);
+    
+    
+    
     TVShow *s = [[TVShow alloc] initWithName:@"Fargo"
                                     category:@"Action"
                                    platforms:[NSArray arrayWithObjects:@"PrimeVideo", nil]
                                         link:@"www.primevideo.com"
                                        notes:@"Fargo is a Tv series based on the film Fargo. Despite all of the disclaimers not all the stories in the series are true."
                                        score:[NSNumber numberWithInt:4]
-                                     seasons:[NSArray arrayWithObjects:se, nil]];
+                                     seasons:ses];
 
     [self.shows add:s];
-    
-    
 }
 
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.shows.size;
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     // Configure the cell...
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TVShowCell" forIndexPath:indexPath];
@@ -66,7 +69,7 @@
     TVShow *s = [self.shows getAtIndex:indexPath.row];
     
     cell.textLabel.text = s.displayName;
-    
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld season(s)", s.size];
     return cell;
 }
 

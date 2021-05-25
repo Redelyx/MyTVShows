@@ -10,11 +10,17 @@
 
 @implementation Episode
 
--(instancetype)initWithScore:(NSNumber *)score{
+-(instancetype)initWithName:(NSString *)name
+                      Score:(NSNumber *)score{
     if(self = [super init]){
-        _score = score;
+        _name = [name copy];
+        _score = [score copy];
+        _watched = NO;
     }
     return self;
+}
+-(instancetype)initWithName:(NSString *)name{
+    return [self initWithName: name Score:[NSNumber numberWithInt:0]];
 }
 
 @end
