@@ -15,6 +15,10 @@
 @property (weak, nonatomic) IBOutlet UITextField *descriptionField;
 @property (weak, nonatomic) IBOutlet UITextField *linkField;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *scoreSegment;
+@property (weak, nonatomic) IBOutlet UIStepper *episodesStepper;
+
+
+
 
 @end
 
@@ -81,7 +85,7 @@
 -(NSString *)pickerView:(UIPickerView *)thePickerView
              titleForRow:(NSInteger)row
             forComponent:(NSInteger)component {
-    NSArray *categories = [NSArray arrayWithObjects:@"Action", @"Comedies", @"Documentaries", @"Dramas", @"Sci-fi", @"Fantasy", @"Romantic", @"Thrillers", nil];
+    NSArray *categories = [NSArray arrayWithObjects:@"Action", @"Comedy", @"Documentary", @"Drama", @"Sci-fi", @"Fantasy", @"Romantic", @"Thriller", nil];
     return [categories objectAtIndex:row];
 }
 

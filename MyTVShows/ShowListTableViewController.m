@@ -8,11 +8,14 @@
 
 #import "ShowListTableViewController.h"
 #import "ShowDetailTableViewController.h"
-#import "TVShowList.h"
+#import "TVShow+CoreDataProperties.h"
 
-@interface ShowListTableViewController ()
+@interface ShowListTableViewController () {
+    AppDelegate *appDelegate;
+    NSManagedObjectContext *context;
+}
 
-@property (nonatomic, strong) TVShowList *shows;
+@property (nonatomic, strong) NSMutableArray *shows;
 
 @end
 
@@ -27,7 +30,9 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    self.shows = [[TVShowList alloc] init];
+    
+    
+    /*self.shows = [[TVShowList alloc] init];
     
     EpisodeList *ep = [[EpisodeList alloc] init];
     for (int i = 0; i<11; i++)[ep add];
@@ -47,7 +52,7 @@
                                        score:[NSNumber numberWithInt:4]
                                      seasons:ses];
 
-    [self.shows add:s];
+    [self.shows add:s];*/
 }
 
 
@@ -56,7 +61,7 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.shows.size;
+    return self.shows.count;
 }
 
 
@@ -66,10 +71,10 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TVShowCell" forIndexPath:indexPath];
     
     // Configure the cell...
-    TVShow *s = [self.shows getAtIndex:indexPath.row];
+    TVShow *s = [self.shows objectAtIndex:indexPath.row];
     
-    cell.textLabel.text = s.displayName;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld season(s)", s.size];
+    cell.textLabel.text = s.name;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld season(s)", s.count];
     return cell;
 }
 
@@ -120,8 +125,7 @@
             ShowDetailTableViewController *vc = (ShowDetailTableViewController *)segue.destinationViewController;
             
             NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-            TVShow *s = [self.shows getAtIndex:indexPath.row];
-            vc.theShow = s;
+            vc.theShow = [self.shows objectAtIndex:indexPath.row];
         }
     }
 }

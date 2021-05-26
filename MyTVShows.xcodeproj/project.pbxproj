@@ -8,11 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0051888E265BFBB6004EBC2A /* AddShowTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0051888D265BFBB6004EBC2A /* AddShowTableViewController.m */; };
-		00518891265D3619004EBC2A /* SeasonList.m in Sources */ = {isa = PBXBuildFile; fileRef = 00518890265D3619004EBC2A /* SeasonList.m */; };
-		00518894265D362F004EBC2A /* EpisodeList.m in Sources */ = {isa = PBXBuildFile; fileRef = 00518893265D362F004EBC2A /* EpisodeList.m */; };
 		00518897265D5AB4004EBC2A /* SeasonDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00518896265D5AB4004EBC2A /* SeasonDetailTableViewController.m */; };
 		0051889A265D6255004EBC2A /* EpisodeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00518899265D6255004EBC2A /* EpisodeDetailViewController.m */; };
-		005A1A0E26569FC200FAAEDF /* TVShowList.m in Sources */ = {isa = PBXBuildFile; fileRef = 005A1A0D26569FC200FAAEDF /* TVShowList.m */; };
 		005C3353265566EA003E5607 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 005C3352265566EA003E5607 /* AppDelegate.m */; };
 		005C3356265566EA003E5607 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 005C3355265566EA003E5607 /* SceneDelegate.m */; };
 		005C335C265566EA003E5607 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 005C335A265566EA003E5607 /* Main.storyboard */; };
@@ -21,24 +18,28 @@
 		005C3364265566EC003E5607 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 005C3363265566EC003E5607 /* main.m */; };
 		005C336F26556932003E5607 /* ShowListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 005C336E26556932003E5607 /* ShowListTableViewController.m */; };
 		005C337226556C86003E5607 /* ShowDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 005C337126556C86003E5607 /* ShowDetailTableViewController.m */; };
-		005C337526556F85003E5607 /* TVShow.m in Sources */ = {isa = PBXBuildFile; fileRef = 005C337426556F85003E5607 /* TVShow.m */; };
-		005C33782655844E003E5607 /* Episode.m in Sources */ = {isa = PBXBuildFile; fileRef = 005C33772655844E003E5607 /* Episode.m */; };
-		005C337B265586CA003E5607 /* Season.m in Sources */ = {isa = PBXBuildFile; fileRef = 005C337A265586CA003E5607 /* Season.m */; };
+		00A50A39265E61F30087DE36 /* MyTVShow.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 00A50A37265E61F30087DE36 /* MyTVShow.xcdatamodeld */; };
+		00A50A77265EEFB60087DE36 /* TVShow+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A50A76265EEFB60087DE36 /* TVShow+Utils.m */; };
+		00A50AAD265EFB160087DE36 /* TVShow+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A50A9B265EFB160087DE36 /* TVShow+CoreDataClass.m */; };
+		00A50AAE265EFB160087DE36 /* TVShow+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A50A9C265EFB160087DE36 /* TVShow+CoreDataProperties.m */; };
+		00A50AAF265EFB160087DE36 /* Category+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A50A9F265EFB160087DE36 /* Category+CoreDataClass.m */; };
+		00A50AB0265EFB160087DE36 /* Category+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A50AA0265EFB160087DE36 /* Category+CoreDataProperties.m */; };
+		00A50AB1265EFB160087DE36 /* Season+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A50AA3265EFB160087DE36 /* Season+CoreDataClass.m */; };
+		00A50AB2265EFB160087DE36 /* Season+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A50AA4265EFB160087DE36 /* Season+CoreDataProperties.m */; };
+		00A50AB3265EFB160087DE36 /* Platform+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A50AA7265EFB160087DE36 /* Platform+CoreDataClass.m */; };
+		00A50AB4265EFB160087DE36 /* Platform+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A50AA8265EFB160087DE36 /* Platform+CoreDataProperties.m */; };
+		00A50AB5265EFB160087DE36 /* Episode+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A50AAB265EFB160087DE36 /* Episode+CoreDataClass.m */; };
+		00A50AB6265EFB160087DE36 /* Episode+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A50AAC265EFB160087DE36 /* Episode+CoreDataProperties.m */; };
+		00A50AB9265EFE590087DE36 /* Category+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A50AB8265EFE590087DE36 /* Category+Utils.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0051888C265BFBB6004EBC2A /* AddShowTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddShowTableViewController.h; sourceTree = "<group>"; };
 		0051888D265BFBB6004EBC2A /* AddShowTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddShowTableViewController.m; sourceTree = "<group>"; };
-		0051888F265D3619004EBC2A /* SeasonList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SeasonList.h; sourceTree = "<group>"; };
-		00518890265D3619004EBC2A /* SeasonList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SeasonList.m; sourceTree = "<group>"; };
-		00518892265D362F004EBC2A /* EpisodeList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EpisodeList.h; sourceTree = "<group>"; };
-		00518893265D362F004EBC2A /* EpisodeList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EpisodeList.m; sourceTree = "<group>"; };
 		00518895265D5AB4004EBC2A /* SeasonDetailTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SeasonDetailTableViewController.h; sourceTree = "<group>"; };
 		00518896265D5AB4004EBC2A /* SeasonDetailTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SeasonDetailTableViewController.m; sourceTree = "<group>"; };
 		00518898265D6255004EBC2A /* EpisodeDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EpisodeDetailViewController.h; sourceTree = "<group>"; };
 		00518899265D6255004EBC2A /* EpisodeDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EpisodeDetailViewController.m; sourceTree = "<group>"; };
-		005A1A0C26569FC200FAAEDF /* TVShowList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TVShowList.h; sourceTree = "<group>"; };
-		005A1A0D26569FC200FAAEDF /* TVShowList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TVShowList.m; sourceTree = "<group>"; };
 		005C334E265566EA003E5607 /* MyTVShows.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyTVShows.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		005C3351265566EA003E5607 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		005C3352265566EA003E5607 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -53,12 +54,31 @@
 		005C336E26556932003E5607 /* ShowListTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowListTableViewController.m; sourceTree = "<group>"; };
 		005C337026556C86003E5607 /* ShowDetailTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowDetailTableViewController.h; sourceTree = "<group>"; };
 		005C337126556C86003E5607 /* ShowDetailTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowDetailTableViewController.m; sourceTree = "<group>"; };
-		005C337326556F85003E5607 /* TVShow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TVShow.h; sourceTree = "<group>"; };
-		005C337426556F85003E5607 /* TVShow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TVShow.m; sourceTree = "<group>"; };
-		005C33762655844E003E5607 /* Episode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Episode.h; sourceTree = "<group>"; };
-		005C33772655844E003E5607 /* Episode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Episode.m; sourceTree = "<group>"; };
-		005C3379265586CA003E5607 /* Season.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Season.h; sourceTree = "<group>"; };
-		005C337A265586CA003E5607 /* Season.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Season.m; sourceTree = "<group>"; };
+		00A50A38265E61F30087DE36 /* MyTVShow.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyTVShow.xcdatamodel; sourceTree = "<group>"; };
+		00A50A75265EEFB60087DE36 /* TVShow+Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TVShow+Utils.h"; sourceTree = "<group>"; };
+		00A50A76265EEFB60087DE36 /* TVShow+Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "TVShow+Utils.m"; sourceTree = "<group>"; };
+		00A50A99265EFB150087DE36 /* TVShow+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TVShow+CoreDataProperties.h"; sourceTree = SOURCE_ROOT; };
+		00A50A9A265EFB150087DE36 /* TVShow+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TVShow+CoreDataClass.h"; sourceTree = SOURCE_ROOT; };
+		00A50A9B265EFB160087DE36 /* TVShow+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "TVShow+CoreDataClass.m"; sourceTree = SOURCE_ROOT; };
+		00A50A9C265EFB160087DE36 /* TVShow+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "TVShow+CoreDataProperties.m"; sourceTree = SOURCE_ROOT; };
+		00A50A9D265EFB160087DE36 /* Category+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Category+CoreDataProperties.h"; sourceTree = SOURCE_ROOT; };
+		00A50A9E265EFB160087DE36 /* Category+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Category+CoreDataClass.h"; sourceTree = SOURCE_ROOT; };
+		00A50A9F265EFB160087DE36 /* Category+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Category+CoreDataClass.m"; sourceTree = SOURCE_ROOT; };
+		00A50AA0265EFB160087DE36 /* Category+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Category+CoreDataProperties.m"; sourceTree = SOURCE_ROOT; };
+		00A50AA1265EFB160087DE36 /* Season+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Season+CoreDataProperties.h"; sourceTree = SOURCE_ROOT; };
+		00A50AA2265EFB160087DE36 /* Season+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Season+CoreDataClass.h"; sourceTree = SOURCE_ROOT; };
+		00A50AA3265EFB160087DE36 /* Season+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Season+CoreDataClass.m"; sourceTree = SOURCE_ROOT; };
+		00A50AA4265EFB160087DE36 /* Season+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Season+CoreDataProperties.m"; sourceTree = SOURCE_ROOT; };
+		00A50AA5265EFB160087DE36 /* Platform+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Platform+CoreDataProperties.h"; sourceTree = SOURCE_ROOT; };
+		00A50AA6265EFB160087DE36 /* Platform+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Platform+CoreDataClass.h"; sourceTree = SOURCE_ROOT; };
+		00A50AA7265EFB160087DE36 /* Platform+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Platform+CoreDataClass.m"; sourceTree = SOURCE_ROOT; };
+		00A50AA8265EFB160087DE36 /* Platform+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Platform+CoreDataProperties.m"; sourceTree = SOURCE_ROOT; };
+		00A50AA9265EFB160087DE36 /* Episode+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Episode+CoreDataProperties.h"; sourceTree = SOURCE_ROOT; };
+		00A50AAA265EFB160087DE36 /* Episode+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Episode+CoreDataClass.h"; sourceTree = SOURCE_ROOT; };
+		00A50AAB265EFB160087DE36 /* Episode+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Episode+CoreDataClass.m"; sourceTree = SOURCE_ROOT; };
+		00A50AAC265EFB160087DE36 /* Episode+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Episode+CoreDataProperties.m"; sourceTree = SOURCE_ROOT; };
+		00A50AB7265EFE590087DE36 /* Category+Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Category+Utils.h"; sourceTree = "<group>"; };
+		00A50AB8265EFE590087DE36 /* Category+Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Category+Utils.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,18 +138,31 @@
 		005C337C265587CB003E5607 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				005C337326556F85003E5607 /* TVShow.h */,
-				005C337426556F85003E5607 /* TVShow.m */,
-				005A1A0C26569FC200FAAEDF /* TVShowList.h */,
-				005A1A0D26569FC200FAAEDF /* TVShowList.m */,
-				005C3379265586CA003E5607 /* Season.h */,
-				005C337A265586CA003E5607 /* Season.m */,
-				0051888F265D3619004EBC2A /* SeasonList.h */,
-				00518890265D3619004EBC2A /* SeasonList.m */,
-				005C33762655844E003E5607 /* Episode.h */,
-				005C33772655844E003E5607 /* Episode.m */,
-				00518892265D362F004EBC2A /* EpisodeList.h */,
-				00518893265D362F004EBC2A /* EpisodeList.m */,
+				00A50A99265EFB150087DE36 /* TVShow+CoreDataProperties.h */,
+				00A50A9A265EFB150087DE36 /* TVShow+CoreDataClass.h */,
+				00A50A9B265EFB160087DE36 /* TVShow+CoreDataClass.m */,
+				00A50A9C265EFB160087DE36 /* TVShow+CoreDataProperties.m */,
+				00A50A9D265EFB160087DE36 /* Category+CoreDataProperties.h */,
+				00A50A9E265EFB160087DE36 /* Category+CoreDataClass.h */,
+				00A50A9F265EFB160087DE36 /* Category+CoreDataClass.m */,
+				00A50AA0265EFB160087DE36 /* Category+CoreDataProperties.m */,
+				00A50AA5265EFB160087DE36 /* Platform+CoreDataProperties.h */,
+				00A50AA6265EFB160087DE36 /* Platform+CoreDataClass.h */,
+				00A50AA7265EFB160087DE36 /* Platform+CoreDataClass.m */,
+				00A50AA8265EFB160087DE36 /* Platform+CoreDataProperties.m */,
+				00A50AA1265EFB160087DE36 /* Season+CoreDataProperties.h */,
+				00A50AA2265EFB160087DE36 /* Season+CoreDataClass.h */,
+				00A50AA3265EFB160087DE36 /* Season+CoreDataClass.m */,
+				00A50AA4265EFB160087DE36 /* Season+CoreDataProperties.m */,
+				00A50AA9265EFB160087DE36 /* Episode+CoreDataProperties.h */,
+				00A50AAA265EFB160087DE36 /* Episode+CoreDataClass.h */,
+				00A50AAB265EFB160087DE36 /* Episode+CoreDataClass.m */,
+				00A50AAC265EFB160087DE36 /* Episode+CoreDataProperties.m */,
+				00A50A37265E61F30087DE36 /* MyTVShow.xcdatamodeld */,
+				00A50A75265EEFB60087DE36 /* TVShow+Utils.h */,
+				00A50A76265EEFB60087DE36 /* TVShow+Utils.m */,
+				00A50AB7265EFE590087DE36 /* Category+Utils.h */,
+				00A50AB8265EFE590087DE36 /* Category+Utils.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -165,6 +198,7 @@
 				TargetAttributes = {
 					005C334D265566EA003E5607 = {
 						CreatedOnToolsVersion = 11.0;
+						LastSwiftMigration = 1100;
 					};
 				};
 			};
@@ -204,19 +238,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00A50AB4265EFB160087DE36 /* Platform+CoreDataProperties.m in Sources */,
+				00A50A77265EEFB60087DE36 /* TVShow+Utils.m in Sources */,
 				005C3353265566EA003E5607 /* AppDelegate.m in Sources */,
-				00518894265D362F004EBC2A /* EpisodeList.m in Sources */,
-				00518891265D3619004EBC2A /* SeasonList.m in Sources */,
+				00A50AB6265EFB160087DE36 /* Episode+CoreDataProperties.m in Sources */,
+				00A50AB5265EFB160087DE36 /* Episode+CoreDataClass.m in Sources */,
+				00A50AAF265EFB160087DE36 /* Category+CoreDataClass.m in Sources */,
+				00A50A39265E61F30087DE36 /* MyTVShow.xcdatamodeld in Sources */,
+				00A50AB3265EFB160087DE36 /* Platform+CoreDataClass.m in Sources */,
 				0051889A265D6255004EBC2A /* EpisodeDetailViewController.m in Sources */,
-				005A1A0E26569FC200FAAEDF /* TVShowList.m in Sources */,
+				00A50AAE265EFB160087DE36 /* TVShow+CoreDataProperties.m in Sources */,
 				0051888E265BFBB6004EBC2A /* AddShowTableViewController.m in Sources */,
+				00A50AB9265EFE590087DE36 /* Category+Utils.m in Sources */,
 				005C336F26556932003E5607 /* ShowListTableViewController.m in Sources */,
 				005C337226556C86003E5607 /* ShowDetailTableViewController.m in Sources */,
-				005C337526556F85003E5607 /* TVShow.m in Sources */,
-				005C33782655844E003E5607 /* Episode.m in Sources */,
-				005C337B265586CA003E5607 /* Season.m in Sources */,
+				00A50AB0265EFB160087DE36 /* Category+CoreDataProperties.m in Sources */,
+				00A50AB2265EFB160087DE36 /* Season+CoreDataProperties.m in Sources */,
 				005C3364265566EC003E5607 /* main.m in Sources */,
+				00A50AAD265EFB160087DE36 /* TVShow+CoreDataClass.m in Sources */,
 				005C3356265566EA003E5607 /* SceneDelegate.m in Sources */,
+				00A50AB1265EFB160087DE36 /* Season+CoreDataClass.m in Sources */,
 				00518897265D5AB4004EBC2A /* SeasonDetailTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -357,6 +398,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = MyTVShows/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -365,6 +407,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.unipr.MyTVShows;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -373,6 +417,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = MyTVShows/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -381,6 +426,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.unipr.MyTVShows;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -407,6 +453,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		00A50A37265E61F30087DE36 /* MyTVShow.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				00A50A38265E61F30087DE36 /* MyTVShow.xcdatamodel */,
+			);
+			currentVersion = 00A50A38265E61F30087DE36 /* MyTVShow.xcdatamodel */;
+			path = MyTVShow.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 005C3346265566EA003E5607 /* Project object */;
 }
