@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Category+Utils.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface AddShowTableViewController : UITableViewController <UIPickerViewDelegate, UIPickerViewDataSource>
+@interface AddShowTableViewController : UITableViewController <UIPickerViewDelegate, UIPickerViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+
+@property (weak, nonatomic) IBOutlet UIPickerView *categoryPicker;
+@property (weak, nonatomic) IBOutlet UIPickerView *platformPicker;
 
 @end
 

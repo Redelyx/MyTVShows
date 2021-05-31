@@ -23,17 +23,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     self.title = self.theShow.name;
-    
-    self.imageView.image = [UIImage imageNamed:@""];
-    
-    self.categoryLabel.text = self.theShow.category;
-    self.platformsLabel.text = self.theShow.platforms[0];
+    self.imageView.image = [TVShow realImage:self.theShow.image];
+    self.categoryLabel.text = self.theShow.category.name;
+    self.platformsLabel.text = [Platform platformsString:self.theShow.platforms];
     self.linkTextView.editable = NO;
     self.linkTextView.dataDetectorTypes = UIDataDetectorTypeLink;
     self.linkTextView.text = self.theShow.link;
     self.notesLabel.text = self.theShow.notes;
-    self.scoreLabel.text = [NSString stringWithFormat:@"%@/5", self.theShow.score];
+    self.scoreLabel.text = [NSString stringWithFormat:@"%@/5", [NSNumber numberWithLong:self.theShow.score]];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -48,7 +47,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.theShow.size;
+    return [[TVShow countSeasonOfShow:(TVShow *)self.theShow] intValue];
 }
 
 
@@ -57,7 +56,8 @@
     
     // Configure the cell...
     
-    Season *s = [self.theShow.seasons getAtIndex:indexPath.row];
+    Season *s = [self.theShow.seasons objectAtIndex:indexPath.row];
+    
     
     cell.textLabel.text = s.name;
       
@@ -109,8 +109,8 @@
             SeasonDetailTableViewController *vc = (SeasonDetailTableViewController *)segue.destinationViewController;
             
             NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-            Season *s = [self.theShow.seasons getAtIndex:indexPath.row];
-            NSLog([NSString stringWithFormat:@"%ld, %@", indexPath.row, s.name]);
+            Season *s = [self.theShow.seasons objectAtIndex:indexPath.row];
+            //NSLog([NSString stringWithFormat:@"%ld, %@", indexPath.row, s.name]);
             
             vc.theSeason = s;
         }

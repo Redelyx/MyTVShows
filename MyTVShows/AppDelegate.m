@@ -7,8 +7,10 @@
 //
 
 #import "AppDelegate.h"
+#import "AddShowTableViewController.h"
 
 @interface AppDelegate ()
+
 
 @end
 
@@ -17,30 +19,102 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    self.context = self.persistentContainer.viewContext;
+    //[self emptyData];
+    //[self createData];
+    [self dataSize];
     return YES;
 }
 
-- (void)applicationWillTerminate:(UIApplication *)application {
+-(void)dataSize{
+    NSMutableArray *shows = [TVShow allShows];
+    NSLog(@"shows: %lu", shows.count);
+    NSMutableArray *plats = [Platform allPlatforms];
+    NSLog(@"plats: %lu", plats.count);
+    NSMutableArray *cats = [Category allCategories];
+    NSLog(@"cats: %lu", cats.count);
+}
+-(void)emptyData{
+    NSMutableArray *shows = [TVShow allShows];
+    NSLog(@"shows: %lu", shows.count);
+    for(TVShow *show in shows){
+        [TVShow deleteTVShow:show];
+    }
+    NSLog(@"shows: %lu", shows.count);
+    
+    
+    NSMutableArray *plats = [Platform allPlatforms];
+    NSLog(@"plats: %lu", plats.count);
+    for(Platform *plat in plats){
+        [Platform deletePlatform:plat];
+    }
+    
+    
+    NSMutableArray *cats = [Category allCategories];
+    NSLog(@"cats: %lu", cats.count);
+    for(Category *cat in cats){
+        [Category deleteCategory:cat];
+    }
+    NSLog(@"cats: %lu", cats.count);
+
+    
+}
+
+-(void)createData{
+    
+    NSArray *categories = [NSArray arrayWithObjects:@"Action", @"Comedy", @"Documentary", @"Drama", @"Sci-fi", @"Fantasy", @"Romantic", @"Thriller", nil];
+    for(NSString *cat in categories){
+        [Category initWithName:cat];
+    }
+    
+    NSArray *platforms = [NSArray arrayWithObjects:@"Netflix", @"PrimeVideo", @"RaiPlay", @"Sky", @"HBO", @"Hulu", @"Disney+", nil];
+    for(NSString *plat in platforms){
+        [Platform initWithName:plat];
+    }
+    
+    
+    if(![TVShow existShowOfName:@"Fargo"] && NO){
+        Category *cat = [Category categoryOfName:@"Action"];
+        Platform *plat = [Platform platformOfName:@"PrimeVideo"];
+        [TVShow initWithName:@"Fargo"
+                    category:cat
+                   platforms:[NSMutableArray arrayWithObjects:plat, nil]
+                        link:@"www.primevideo.com"
+                       notes:@"Fargo is a Tv series based on the film Fargo. Despite all of the disclaimers not all the stories in the series are true."
+                       score:[NSNumber numberWithInt:4]
+                       image:[UIImage imageNamed:@""]
+             numberOfSeasons:[NSNumber numberWithInt:4]];
+        
+
+
+    }    
+}
+
+-(void)applicationWillResignActive:(UIApplication *)application {
+    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
+    // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
+}
+
+
+-(void)applicationDidEnterBackground:(UIApplication *)application {
+    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
+    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+}
+
+
+-(void)applicationWillEnterForeground:(UIApplication *)application {
+    // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+}
+
+
+-(void)applicationDidBecomeActive:(UIApplication *)application {
+    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+}
+
+-(void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Saves changes in the application's managed object context before the application terminates.
     [self saveContext];
-}
-
-
-#pragma mark - UISceneSession lifecycle
-
-
-- (UISceneConfiguration *)application:(UIApplication *)application configurationForConnectingSceneSession:(UISceneSession *)connectingSceneSession options:(UISceneConnectionOptions *)options {
-    // Called when a new scene session is being created.
-    // Use this method to select a configuration to create the new scene with.
-    return [[UISceneConfiguration alloc] initWithName:@"Default Configuration" sessionRole:connectingSceneSession.role];
-}
-
-
-- (void)application:(UIApplication *)application didDiscardSceneSessions:(NSSet<UISceneSession *> *)sceneSessions {
-    // Called when the user discards a scene session.
-    // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
-    // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
 }
 
 #pragma mark - Core Data stack
@@ -67,9 +141,8 @@
 #pragma mark - Core Data Saving support
 
 - (void)saveContext {
-    NSManagedObjectContext *context = self.persistentContainer.viewContext;
     NSError *error = nil;
-    if ([context hasChanges] && ![context save:&error]) {
+    if ([self.context hasChanges] && ![self.context save:&error]) {
         // Replace this implementation with code to handle the error appropriately.
         // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
         NSLog(@"Unresolved error %@, %@", error, error.userInfo);

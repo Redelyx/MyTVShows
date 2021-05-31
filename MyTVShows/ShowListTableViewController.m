@@ -7,13 +7,8 @@
 //
 
 #import "ShowListTableViewController.h"
-#import "ShowDetailTableViewController.h"
-#import "TVShow+CoreDataProperties.h"
 
-@interface ShowListTableViewController () {
-    AppDelegate *appDelegate;
-    NSManagedObjectContext *context;
-}
+@interface ShowListTableViewController () 
 
 @property (nonatomic, strong) NSMutableArray *shows;
 
@@ -24,6 +19,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"MyTVShows";
+    
+    self.shows = [TVShow allShows];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -52,7 +49,9 @@
                                        score:[NSNumber numberWithInt:4]
                                      seasons:ses];
 
+     
     [self.shows add:s];*/
+    
 }
 
 
@@ -74,7 +73,8 @@
     TVShow *s = [self.shows objectAtIndex:indexPath.row];
     
     cell.textLabel.text = s.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld season(s)", s.count];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ season(s)",[TVShow countSeasonOfShow:s]];
+    
     return cell;
 }
 

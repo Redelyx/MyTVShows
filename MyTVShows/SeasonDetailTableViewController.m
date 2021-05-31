@@ -8,7 +8,8 @@
 
 #import "SeasonDetailTableViewController.h"
 #import "EpisodeDetailViewController.h"
-#import "SeasonList.h"
+#import "AddEpisodesViewController.h"
+#import "TVShow+Utils.h"
 @interface SeasonDetailTableViewController ()
 
 
@@ -34,7 +35,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.theSeason.size;
+    return [[Season countEpisodesOfSeason:(Season *)self.theSeason] intValue];;
 }
 
 
@@ -44,7 +45,8 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"episodeCell" forIndexPath:indexPath];
     
     // Configure the cell...
-    Episode *s = [self.theSeason.episodes getAtIndex:indexPath.row];
+    Episode *s = [self.theSeason.episodes objectAtIndex:indexPath.row];
+    
     
     cell.textLabel.text = s.name;
     
@@ -88,21 +90,27 @@
 
 
 #pragma mark - Navigation
-/*
+
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if([segue.identifier isEqualToString:@"ShowEpisodeDetail"]){
         if([segue.destinationViewController isKindOfClass:[EpisodeDetailViewController class]]){
-        EpisodeDetailViewController *vc = (EpisodeDetailViewController *)segue.destinationViewController;
-        
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-        Episode *s = [self.season.episodes getAtIndex:indexPath.row];
+            EpisodeDetailViewController *vc = (EpisodeDetailViewController *)segue.destinationViewController;
+            
+            NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+            Episode *s = [self.theSeason.episodes objectAtIndex:indexPath.row];
             vc.theEpisode = s;
         }
     }
+    
+    if([segue.identifier isEqualToString:@"ShowAddEpisodes"]){
+        if([segue.destinationViewController isKindOfClass:[AddEpisodesViewController class]]){
+            AddEpisodesViewController *vc = (AddEpisodesViewController *)segue.destinationViewController;
+                
+            vc.theSeason = self.theSeason;
+        }
+    }
 }
-*/
 
-- (IBAction)checkButton:(id)sender {
-}
+
 @end

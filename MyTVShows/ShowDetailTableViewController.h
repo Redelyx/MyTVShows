@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TVShow+CoreDataProperties.h"
+#import "TVShow+Utils.h"
+#import "Category+CoreDataProperties.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

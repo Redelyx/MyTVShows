@@ -7,6 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TVShow+Utils.h"
+#import "ShowDetailTableViewController.h"
+#import "Category+Utils.h"
+#import "Platform+Utils.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

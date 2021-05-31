@@ -8,11 +8,17 @@
 
 #import <Foundation/Foundation.h>
 #import "Category+CoreDataClass.h"
+#import "AppDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface Category (Utils)
-//+(NSString *)name;
+
++(Category *)initWithName:(NSString *)name;
++(NSMutableArray *)allCategories;
++(Category *)categoryOfName:(NSString *)name;
++(void)deleteCategory:(Category *)category;
+
 @end
 
 NS_ASSUME_NONNULL_END

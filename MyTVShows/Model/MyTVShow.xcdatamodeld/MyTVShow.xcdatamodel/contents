@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14903" systemVersion="19H2" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
-    <entity name="Category" representedClassName="Category" syncable="YES" codeGenerationType="class">
+    <entity name="Category" representedClassName="Category" syncable="YES">
         <attribute name="name" attributeType="String"/>
         <relationship name="shows" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TVShow" inverseName="category" inverseEntity="TVShow"/>
     </entity>
-    <entity name="Episode" representedClassName="Episode" syncable="YES" codeGenerationType="class">
+    <entity name="Episode" representedClassName="Episode" syncable="YES">
         <attribute name="name" attributeType="String"/>
         <attribute name="score" optional="YES" attributeType="Integer 64" minValueString="0" maxValueString="5" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="watched" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <relationship name="season" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Season" inverseName="episodes" inverseEntity="Season"/>
     </entity>
-    <entity name="Platform" representedClassName="Platform" syncable="YES" codeGenerationType="class">
+    <entity name="Platform" representedClassName="Platform" syncable="YES">
         <attribute name="name" attributeType="String"/>
         <relationship name="shows" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TVShow" inverseName="platforms" inverseEntity="TVShow"/>
     </entity>
-    <entity name="Season" representedClassName="Season" syncable="YES" codeGenerationType="class">
+    <entity name="Season" representedClassName="Season" syncable="YES">
         <attribute name="name" attributeType="String"/>
-        <relationship name="episodes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Episode" inverseName="season" inverseEntity="Episode"/>
+        <relationship name="episodes" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Episode" inverseName="season" inverseEntity="Episode"/>
         <relationship name="show" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TVShow" inverseName="seasons" inverseEntity="TVShow"/>
     </entity>
-    <entity name="TVShow" representedClassName="TVShow" syncable="YES" codeGenerationType="class">
+    <entity name="TVShow" representedClassName="TVShow" syncable="YES">
         <attribute name="image" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
         <attribute name="link" optional="YES" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
@@ -27,13 +27,13 @@
         <attribute name="score" attributeType="Integer 64" minValueString="0" maxValueString="4" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="shows" inverseEntity="Category"/>
         <relationship name="platforms" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Platform" inverseName="shows" inverseEntity="Platform"/>
-        <relationship name="seasons" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Season" inverseName="show" inverseEntity="Season"/>
+        <relationship name="seasons" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Season" inverseName="show" inverseEntity="Season"/>
     </entity>
     <elements>
-        <element name="TVShow" positionX="-449.984375" positionY="-95.01171875" width="128" height="163"/>
-        <element name="Season" positionX="-150.9765625" positionY="31.00390625" width="128" height="88"/>
+        <element name="Category" positionX="-273.97265625" positionY="-206.00390625" width="128" height="73"/>
         <element name="Episode" positionX="81.01171875" positionY="29" width="128" height="103"/>
         <element name="Platform" positionX="-131.9765625" positionY="-181.00390625" width="128" height="73"/>
-        <element name="Category" positionX="-273.97265625" positionY="-206.00390625" width="128" height="73"/>
+        <element name="Season" positionX="-150.9765625" positionY="31.00390625" width="128" height="88"/>
+        <element name="TVShow" positionX="-449.984375" positionY="-95.01171875" width="128" height="163"/>
     </elements>
 </model>

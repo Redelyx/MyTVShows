@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Episode.h"
+#import "Episode+Utils.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -2,7 +2,7 @@
 //  TVShow+CoreDataProperties.h
 //  MyTVShows
 //
-//  Created by Alice on 26/05/2021.
+//  Created by Alice on 27/05/2021.
 //  Copyright © 2021 Alice. All rights reserved.
 //
 //
@@ -29,6 +29,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TVShow (CoreDataGeneratedAccessors)
 
+- (void)insertObject:(Season *)value inSeasonsAtIndex:(NSUInteger)idx;
+- (void)removeObjectFromSeasonsAtIndex:(NSUInteger)idx;
+- (void)insertSeasons:(NSArray<Season *> *)value atIndexes:(NSIndexSet *)indexes;
+- (void)removeSeasonsAtIndexes:(NSIndexSet *)indexes;
+- (void)replaceObjectInSeasonsAtIndex:(NSUInteger)idx withObject:(Season *)value;
+- (void)replaceSeasonsAtIndexes:(NSIndexSet *)indexes withSeasons:(NSArray<Season *> *)values;
 - (void)addSeasonsObject:(Season *)value;
 - (void)removeSeasonsObject:(Season *)value;
 - (void)addSeasons:(NSOrderedSet<Season *> *)values;
