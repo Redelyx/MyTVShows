@@ -2,7 +2,7 @@
 //  Season+CoreDataProperties.h
 //  MyTVShows
 //
-//  Created by Alice on 27/05/2021.
+//  Created by Alice on 01/06/2021.
 //  Copyright © 2021 Alice. All rights reserved.
 //
 //
@@ -17,8 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSFetchRequest<Season *> *)fetchRequest;
 
 @property (nullable, nonatomic, copy) NSString *name;
-@property (nullable, nonatomic, retain) TVShow *show;
 @property (nullable, nonatomic, retain) NSOrderedSet<Episode *> *episodes;
+@property (nullable, nonatomic, retain) TVShow *show;
 
 @end
 

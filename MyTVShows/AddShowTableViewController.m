@@ -138,8 +138,9 @@ didFinishPickingMediaWithInfo:(nonnull NSDictionary<UIImagePickerControllerInfoK
         
     } else {
         [_nameField setPlaceholder:@"Insert a name"];
-        
     }
+    [self dismissViewControllerAnimated:YES completion:nil];
+
 }
 
 - (IBAction)addPlatform:(id)sender {

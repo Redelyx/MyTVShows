@@ -10,30 +10,6 @@
 
 @implementation TVShow (Utils)
 
-/*+(TVShow *)initWithName:(NSString *)name
-               category:(Category *)category
-              platforms:(NSMutableArray *)platforms
-                   link:(NSString *)link
-                  notes:(NSString *)notes
-                  score:(NSNumber *)score
-                  image:(UIImage *)image
-                seasons:(NSMutableArray *)seasons{
-    
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-        
-    TVShow *show = [[TVShow alloc] initWithContext:appDelegate.context];
-    show.name = name;
-    //show.category = [Category initWithName:category show:show];;
-    show.platforms = [NSSet setWithArray:platforms];
-    show.link = link;
-    show.notes = notes;
-    show.score = [score intValue];
-    //show.image = image;
-    show.seasons = [NSOrderedSet orderedSetWithArray:seasons];
-    
-    return show;
-}*/
-
 +(TVShow *)initWithName:(NSString *)name
                category:(Category *)category
               platforms:(NSMutableArray *)platforms
@@ -137,12 +113,19 @@
     return NO;
 }
 
-+(NSNumber *)countSeasonOfShow:(TVShow *)show{
-    return [NSNumber numberWithUnsignedLong: show.seasons.count];
+-(NSNumber *)countSeasons{
+    return [NSNumber numberWithUnsignedLong: self.seasons.count];
 }
 
 +(UIImage *)realImage:(NSData *)data{
     return [UIImage imageWithData:data];
 }
 
+-(NSMutableString *)printShowPlatforms{
+    NSMutableString *string = [NSMutableString stringWithFormat:@""];
+    for(Platform *plat in self.platforms){
+        [string appendString:[NSString stringWithFormat:@" %@", plat.name]];
+    }
+    return string;
+}
 @end

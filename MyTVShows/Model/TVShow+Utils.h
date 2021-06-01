@@ -17,14 +17,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TVShow (Utils)
-/*+(TVShow *)initWithName:(NSString *)name
-               category:(Category *)category
-              platforms:(NSMutableArray *)platforms
-                   link:(NSString *)link
-                  notes:(NSString *)notes
-                  score:(NSNumber *)score
-                  image:(UIImage *)image
-                seasons:(NSMutableArray *)seasons;*/
 
 +(TVShow *)initWithName:(NSString *)name
                category:(Category *)category
@@ -43,12 +35,13 @@ NS_ASSUME_NONNULL_BEGIN
  
 +(NSMutableArray *)allShowsWithScore:(NSNumber *)score;
 
-+(NSNumber *)countSeasonOfShow:(TVShow *)show;
+-(NSNumber *)countSeasons;
 
 +(BOOL)existShowOfName:(NSString *)name;
 
 +(UIImage *)realImage:(NSData *)Data;
 
+-(NSMutableString *)printShowPlatforms;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -11,7 +11,7 @@
 @interface ShowListTableViewController () 
 
 @property (nonatomic, strong) NSMutableArray *shows;
-
+@property (nonatomic, strong) AppDelegate *delegate;
 @end
 
 @implementation ShowListTableViewController
@@ -19,41 +19,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"MyTVShows";
-    
     self.shows = [TVShow allShows];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-    
-    /*self.shows = [[TVShowList alloc] init];
-    
-    EpisodeList *ep = [[EpisodeList alloc] init];
-    for (int i = 0; i<11; i++)[ep add];
-    
-    SeasonList *ses = [[SeasonList alloc] init];
-    [ses add:[[Season alloc]initWithSeasonNumber:ses.size+1 Episodes:ep]];
-    
-    NSLog(@"%ld", [ep size]);
-    
-    
-    
-    TVShow *s = [[TVShow alloc] initWithName:@"Fargo"
-                                    category:@"Action"
-                                   platforms:[NSArray arrayWithObjects:@"PrimeVideo", nil]
-                                        link:@"www.primevideo.com"
-                                       notes:@"Fargo is a Tv series based on the film Fargo. Despite all of the disclaimers not all the stories in the series are true."
-                                       score:[NSNumber numberWithInt:4]
-                                     seasons:ses];
-
-     
-    [self.shows add:s];*/
     
 }
 
+- (IBAction)emptyData:(id)sender {
+    [AppDelegate emptyData];
+    [self.tableView reloadData];
+    NSLog(@"n shows: %@", [NSNumber numberWithUnsignedInteger:self.shows.count]);
+}
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -73,7 +47,7 @@
     TVShow *s = [self.shows objectAtIndex:indexPath.row];
     
     cell.textLabel.text = s.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ season(s)",[TVShow countSeasonOfShow:s]];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ season(s)",[s countSeasons]];
     
     return cell;
 }

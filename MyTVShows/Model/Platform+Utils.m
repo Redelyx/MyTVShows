@@ -61,9 +61,7 @@
     platformStringList = [NSMutableString stringWithFormat:@""];
     for(Platform *plat in platforms){
             [platformStringList appendString:[NSString stringWithFormat:@"%@ ", plat.name]];
-        NSLog(plat.name);
     }
-    NSLog(platformStringList);
     return platformStringList;
 }
 

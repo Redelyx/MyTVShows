@@ -11,7 +11,6 @@
 
 @interface AppDelegate ()
 
-
 @end
 
 @implementation AppDelegate
@@ -20,8 +19,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     self.context = self.persistentContainer.viewContext;
-    //[self emptyData];
+    //[AppDelegate emptyData];
     //[self createData];
+    //[self createSample];
     [self dataSize];
     return YES;
 }
@@ -30,13 +30,13 @@
     NSMutableArray *shows = [TVShow allShows];
     NSLog(@"shows: %lu", shows.count);
     NSMutableArray *plats = [Platform allPlatforms];
-    NSLog(@"plats: %lu", plats.count);
+    NSLog(@"platforms: %lu", plats.count);
     NSMutableArray *cats = [Category allCategories];
-    NSLog(@"cats: %lu", cats.count);
+    NSLog(@"categories: %lu", cats.count);
 }
--(void)emptyData{
+
++(void)emptyData{
     NSMutableArray *shows = [TVShow allShows];
-    NSLog(@"shows: %lu", shows.count);
     for(TVShow *show in shows){
         [TVShow deleteTVShow:show];
     }
@@ -44,20 +44,35 @@
     
     
     NSMutableArray *plats = [Platform allPlatforms];
-    NSLog(@"plats: %lu", plats.count);
     for(Platform *plat in plats){
         [Platform deletePlatform:plat];
     }
-    
+    NSLog(@"plats: %lu", plats.count);
     
     NSMutableArray *cats = [Category allCategories];
-    NSLog(@"cats: %lu", cats.count);
     for(Category *cat in cats){
         [Category deleteCategory:cat];
     }
     NSLog(@"cats: %lu", cats.count);
 
-    
+    NSLog(@"Data deleted!");
+}
+
+
+-(void)createSample{
+    if(![TVShow existShowOfName:@"Fargo"]){
+        Category *cat = [Category categoryOfName:@"Action"];
+        Platform *plat = [Platform platformOfName:@"PrimeVideo"];
+        Platform *plat1 = [Platform platformOfName:@"HBO"];
+        [TVShow initWithName:@"Fargo"
+                    category:cat
+                   platforms:[NSMutableArray arrayWithObjects:plat, plat1, nil]
+                        link:@"www.primevideo.com"
+                       notes:@"Fargo is a Tv series based on the film Fargo. Despite all of the disclaimers not all the stories in the series are true."
+                       score:[NSNumber numberWithInt:4]
+                       image:[UIImage imageNamed:@""]
+             numberOfSeasons:[NSNumber numberWithInt:4]];
+    }
 }
 
 -(void)createData{
@@ -71,23 +86,6 @@
     for(NSString *plat in platforms){
         [Platform initWithName:plat];
     }
-    
-    
-    if(![TVShow existShowOfName:@"Fargo"] && NO){
-        Category *cat = [Category categoryOfName:@"Action"];
-        Platform *plat = [Platform platformOfName:@"PrimeVideo"];
-        [TVShow initWithName:@"Fargo"
-                    category:cat
-                   platforms:[NSMutableArray arrayWithObjects:plat, nil]
-                        link:@"www.primevideo.com"
-                       notes:@"Fargo is a Tv series based on the film Fargo. Despite all of the disclaimers not all the stories in the series are true."
-                       score:[NSNumber numberWithInt:4]
-                       image:[UIImage imageNamed:@""]
-             numberOfSeasons:[NSNumber numberWithInt:4]];
-        
-
-
-    }    
 }
 
 -(void)applicationWillResignActive:(UIApplication *)application {

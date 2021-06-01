@@ -21,7 +21,7 @@
 @property (nonatomic)NSManagedObjectContext *context;
 
 - (void)saveContext;
-- (void)emptyData;
++ (void)emptyData;
 
 
 @end

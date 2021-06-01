@@ -45,7 +45,10 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"episodeCell" forIndexPath:indexPath];
     
     // Configure the cell...
-    Episode *s = [self.theSeason.episodes objectAtIndex:indexPath.row];
+    NSOrderedSet *eps = self.theSeason.episodes;
+    
+    Episode *s = [eps objectAtIndex:indexPath.row];
+    
     
     
     cell.textLabel.text = s.name;
@@ -98,7 +101,8 @@
             EpisodeDetailViewController *vc = (EpisodeDetailViewController *)segue.destinationViewController;
             
             NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-            Episode *s = [self.theSeason.episodes objectAtIndex:indexPath.row];
+            NSOrderedSet *eps = self.theSeason.episodes;
+            Episode *s = [eps objectAtIndex:indexPath.row];
             vc.theEpisode = s;
         }
     }

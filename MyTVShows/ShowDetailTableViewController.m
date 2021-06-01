@@ -25,6 +25,7 @@
     [super viewDidLoad];
 
     self.title = self.theShow.name;
+    
     self.imageView.image = [TVShow realImage:self.theShow.image];
     self.categoryLabel.text = self.theShow.category.name;
     self.platformsLabel.text = [Platform platformsString:self.theShow.platforms];
@@ -47,7 +48,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[TVShow countSeasonOfShow:(TVShow *)self.theShow] intValue];
+    return [[self.theShow countSeasons] intValue];
 }
 
 

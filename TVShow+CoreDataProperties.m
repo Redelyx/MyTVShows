@@ -2,7 +2,7 @@
 //  TVShow+CoreDataProperties.m
 //  MyTVShows
 //
-//  Created by Alice on 27/05/2021.
+//  Created by Alice on 01/06/2021.
 //  Copyright © 2021 Alice. All rights reserved.
 //
 //
@@ -15,13 +15,13 @@
 	return [NSFetchRequest fetchRequestWithEntityName:@"TVShow"];
 }
 
-@dynamic name;
+@dynamic image;
 @dynamic link;
+@dynamic name;
 @dynamic notes;
 @dynamic score;
-@dynamic image;
-@dynamic seasons;
 @dynamic category;
 @dynamic platforms;
+@dynamic seasons;
 
 @end
