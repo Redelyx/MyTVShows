@@ -11,7 +11,6 @@
 #import "ShowDetailTableViewController.h"
 #import "Category+Utils.h"
 #import "Platform+Utils.h"
-#import "AppDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

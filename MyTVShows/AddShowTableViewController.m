@@ -17,8 +17,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *snumberField;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (nonatomic, weak) NSString *imageName;
+@property (nonatomic, strong) NSMutableArray *platforms;
 @property (nonatomic, strong) NSMutableString *platformsString;
-@property (nonatomic, weak) NSMutableArray *platforms;
 @end
 
 @implementation AddShowTableViewController
@@ -30,7 +30,9 @@
     _categoryPicker.dataSource = self;
     _platformPicker.delegate = self;
     _platformPicker.dataSource = self;
-    
+    _platforms = [[NSMutableArray alloc]init];
+    _platformsString = [[NSMutableString alloc] init];
+    self.platformField.text = @"";
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignKeyboard)];
     
     [self.tableView addGestureRecognizer:gestureRecognizer];
@@ -38,20 +40,13 @@
     [self.scoreSegment addTarget:self
                           action:@selector(updateSegmentImage)
                 forControlEvents:UIControlEventValueChanged];
-    
-    self.platformsString = [NSMutableString stringWithFormat:@"Uffa"];
-    self.platformField.text = self.platformsString;
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(updateUI)
-                                                 name:@"AddedPlatform"
-                                               object:self.platformsString];
-    
+       
 
 }
 
 #pragma mark - Table view data source
 -(void)updateUI{
-    self.platformField.text = self.platformsString;
+
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -115,7 +110,7 @@ didFinishPickingMediaWithInfo:(nonnull NSDictionary<UIImagePickerControllerInfoK
 //Action buttons implementation
 - (IBAction)addShow{
 
-    if (!([self.nameField.text isEqualToString:@""] || [TVShow existShowOfName:self.nameField.text])) {
+    if (!([self.nameField.text isEqualToString:@""] || [TVShow existShowOfName:self.nameField.text] || [self.snumberField.text isEqualToString:@""] || self.scoreSegment.selectedSegmentIndex == UISegmentedControlNoSegment)) {
         NSString *selectedCategory = [self pickerView:_categoryPicker
                                           titleForRow:[_categoryPicker selectedRowInComponent:0]
                                          forComponent:0];
@@ -124,10 +119,17 @@ didFinishPickingMediaWithInfo:(nonnull NSDictionary<UIImagePickerControllerInfoK
         f.numberStyle =NSNumberFormatterDecimalStyle;
         
         NSNumber *n = [f numberFromString:self.snumberField.text];
+        
+        NSMutableArray *plats = [[NSMutableArray alloc] init];
+        
+        for(Platform *plat in self.platforms){
+            [plats addObject:plat];
+        }
+        
        
         [TVShow initWithName:self.nameField.text
                     category:[Category categoryOfName:selectedCategory]
-                   platforms:self.platforms
+                   platforms:plats
                         link:self.linkField.text
                        notes:self.descriptionField.text
                        score:[NSNumber numberWithLong:self.scoreSegment.selectedSegmentIndex+1]
@@ -135,11 +137,20 @@ didFinishPickingMediaWithInfo:(nonnull NSDictionary<UIImagePickerControllerInfoK
              numberOfSeasons:n];
 
         [self.nameField setText:@""];
+        [self.descriptionField setText:@""];
+        [self.linkField setText:@""];
+        [self.snumberField setText:@""];
+        [self.platformField setText:@""];
+        
+        [self.navigationController popViewControllerAnimated:YES];
+        
         
     } else {
-        [_nameField setPlaceholder:@"Insert a name"];
+        [self.nameField setPlaceholder:@"Insert a name"];
+        [self.descriptionField setPlaceholder:@"Insert a description"];
+        [self.snumberField setPlaceholder:@"Insert n of seasons"];
     }
-    [self dismissViewControllerAnimated:YES completion:nil];
+    
 
 }
 
@@ -147,10 +158,11 @@ didFinishPickingMediaWithInfo:(nonnull NSDictionary<UIImagePickerControllerInfoK
     NSString *selectedPlatform = [self pickerView:_platformPicker
                                       titleForRow:[_platformPicker selectedRowInComponent:0]
                                      forComponent:0];
-    Platform *plat = [Platform platformOfName:selectedPlatform];
-    [self.platforms addObject:plat];
-    [self.platformsString appendString:[NSString stringWithFormat:@"%@ ", plat.name]];
-    NSLog(@"%@", plat.name);
+    if(![self.platformsString containsString:selectedPlatform]){
+        [self.platforms addObject:[Platform platformOfName:selectedPlatform]];
+        [self.platformsString appendString:[NSString stringWithFormat:@"%@ ", selectedPlatform]];
+        _platformField.text = self.platformsString;
+    }
 }
 
 

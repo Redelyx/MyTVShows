@@ -123,6 +123,7 @@
 
 -(NSMutableString *)printShowPlatforms{
     NSMutableString *string = [NSMutableString stringWithFormat:@""];
+
     for(Platform *plat in self.platforms){
         [string appendString:[NSString stringWithFormat:@" %@", plat.name]];
     }

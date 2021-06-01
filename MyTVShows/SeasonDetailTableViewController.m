@@ -7,11 +7,9 @@
 //
 
 #import "SeasonDetailTableViewController.h"
-#import "EpisodeDetailViewController.h"
-#import "AddEpisodesViewController.h"
-#import "TVShow+Utils.h"
-@interface SeasonDetailTableViewController ()
 
+@interface SeasonDetailTableViewController ()
+@property (nonatomic, strong) AppDelegate *delegate;
 
 @end
 
@@ -21,13 +19,18 @@
     [super viewDidLoad];
     self.title = self.theSeason.name;
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    _delegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+
+    [[NSNotificationCenter defaultCenter]addObserver:self
+                                            selector:@selector(updateUI)
+                                                name:NSManagedObjectContextObjectsDidChangeNotification
+                                              object:_delegate.context];
 }
 
+-(void)updateUI{
+    [self.tableView reloadData];
+    NSLog(@"Updated data!");
+}
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -55,7 +58,6 @@
     
     return cell;
 }
-
 
 /*
 // Override to support conditional editing of the table view.

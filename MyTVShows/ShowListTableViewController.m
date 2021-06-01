@@ -21,12 +21,22 @@
     self.title = @"MyTVShows";
     self.shows = [TVShow allShows];
     
+    _delegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self
+                                           selector:@selector(updateUI)
+                                               name:NSManagedObjectContextObjectsDidChangeNotification
+                                             object:_delegate.context];
+    
 }
 
-- (IBAction)emptyData:(id)sender {
-    [AppDelegate emptyData];
+-(void)updateUI{
     [self.tableView reloadData];
-    NSLog(@"n shows: %@", [NSNumber numberWithUnsignedInteger:self.shows.count]);
+    NSLog(@"Updated data!");
+}
+
+
+- (IBAction)emptyData:(id)sender {
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -51,6 +61,7 @@
     
     return cell;
 }
+
 
 
 /*
@@ -86,7 +97,7 @@
     return YES;
 }
 */
-
+        
 
 #pragma mark - Navigation
 

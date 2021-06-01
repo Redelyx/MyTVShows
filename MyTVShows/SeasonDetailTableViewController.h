@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Season+Utils.h"
+#import "EpisodeDetailViewController.h"
+#import "AddEpisodesViewController.h"
+#import "TVShow+Utils.h"
 
 
 NS_ASSUME_NONNULL_BEGIN

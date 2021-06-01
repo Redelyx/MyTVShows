@@ -150,7 +150,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="www.spotify.it" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="JrX-Am-2rt">
-                                    <rect key="frame" x="108.33333333333334" y="198" width="297.66666666666663" height="20"/>
+                                    <rect key="frame" x="108" y="193" width="298" height="28"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -165,7 +165,6 @@
                                 <constraint firstItem="LgL-5s-SSd" firstAttribute="width" secondItem="a08-7L-62a" secondAttribute="width" id="4Bk-ik-Lgu"/>
                                 <constraint firstItem="LgL-5s-SSd" firstAttribute="width" secondItem="1vf-4t-vuq" secondAttribute="width" id="4eM-Gv-9Pz"/>
                                 <constraint firstItem="LgL-5s-SSd" firstAttribute="top" secondItem="a08-7L-62a" secondAttribute="bottom" constant="10" id="8Tt-Jx-92S"/>
-                                <constraint firstItem="JrX-Am-2rt" firstAttribute="height" secondItem="LgL-5s-SSd" secondAttribute="height" id="8gA-6Y-CaZ"/>
                                 <constraint firstItem="a08-7L-62a" firstAttribute="height" secondItem="OEY-dD-qXm" secondAttribute="height" id="9JA-eG-Tlg"/>
                                 <constraint firstItem="JrX-Am-2rt" firstAttribute="width" secondItem="oRD-FR-WnQ" secondAttribute="width" id="AOW-7r-LdY"/>
                                 <constraint firstItem="z2q-A7-1ES" firstAttribute="leading" secondItem="1gP-GJ-bNJ" secondAttribute="leading" constant="8" id="BCh-Q1-aC3"/>
@@ -195,7 +194,7 @@
                                 <constraint firstItem="flI-UM-24J" firstAttribute="centerY" secondItem="z2q-A7-1ES" secondAttribute="centerY" id="c6Y-Q3-6LU"/>
                                 <constraint firstItem="JrX-Am-2rt" firstAttribute="leading" secondItem="LgL-5s-SSd" secondAttribute="trailing" constant="8" id="dks-mr-6Uw"/>
                                 <constraint firstItem="5MY-97-Pll" firstAttribute="top" secondItem="1gP-GJ-bNJ" secondAttribute="top" id="eTT-ta-7Rc"/>
-                                <constraint firstItem="JrX-Am-2rt" firstAttribute="centerY" secondItem="LgL-5s-SSd" secondAttribute="centerY" id="en2-Tk-O86"/>
+                                <constraint firstItem="JrX-Am-2rt" firstAttribute="centerY" secondItem="LgL-5s-SSd" secondAttribute="centerY" constant="-1" id="en2-Tk-O86"/>
                                 <constraint firstItem="oRD-FR-WnQ" firstAttribute="firstBaseline" secondItem="1vf-4t-vuq" secondAttribute="firstBaseline" id="eoh-QI-Z2g"/>
                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="flI-UM-24J" secondAttribute="trailing" id="fVv-Vd-c0h"/>
                                 <constraint firstItem="flI-UM-24J" firstAttribute="height" secondItem="z2q-A7-1ES" secondAttribute="height" id="gI1-xA-oW0"/>
@@ -205,7 +204,7 @@
                                 <constraint firstItem="cXv-ke-kaP" firstAttribute="leading" secondItem="JuT-3T-bGG" secondAttribute="trailing" constant="8" id="jew-AS-Yi9"/>
                                 <constraint firstItem="OEY-dD-qXm" firstAttribute="leading" secondItem="a08-7L-62a" secondAttribute="trailing" constant="8" id="oYD-O3-7lM"/>
                                 <constraint firstItem="flI-UM-24J" firstAttribute="top" secondItem="5MY-97-Pll" secondAttribute="bottom" constant="10" id="pC3-WE-5EI"/>
-                                <constraint firstItem="JrX-Am-2rt" firstAttribute="top" secondItem="OEY-dD-qXm" secondAttribute="bottom" constant="10" id="qwO-kt-fqR"/>
+                                <constraint firstItem="JrX-Am-2rt" firstAttribute="top" secondItem="OEY-dD-qXm" secondAttribute="bottom" constant="5" id="qwO-kt-fqR"/>
                                 <constraint firstItem="cXv-ke-kaP" firstAttribute="height" secondItem="JuT-3T-bGG" secondAttribute="height" id="rKP-1F-bmJ"/>
                                 <constraint firstAttribute="trailing" secondItem="cXv-ke-kaP" secondAttribute="trailing" constant="8" id="rod-cZ-zCu"/>
                                 <constraint firstItem="OEY-dD-qXm" firstAttribute="centerY" secondItem="a08-7L-62a" secondAttribute="centerY" id="vce-cb-Jzc"/>
@@ -241,7 +240,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="7wT-tM-Ev2">
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="trash" id="UbG-M2-8Ue"/>
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="trash" id="UbG-M2-8Ue">
+                            <connections>
+                                <action selector="deleteShow:" destination="O5W-9N-kn5" id="M9o-bC-Z75"/>
+                            </connections>
+                        </barButtonItem>
                         <connections>
                             <outlet property="rightBarButtonItem" destination="UbG-M2-8Ue" id="aNk-Ht-Ovl"/>
                         </connections>
@@ -445,7 +448,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <sections>
-                            <tableViewSection headerTitle="Section-1" id="Uch-oH-Dlt">
+                            <tableViewSection headerTitle="Add new show" id="Uch-oH-Dlt">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="221" id="oFt-Vz-6Qh">
                                         <rect key="frame" x="0.0" y="28" width="414" height="221"/>
@@ -555,7 +558,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nvI-0m-9Qx">
-                                                    <rect key="frame" x="369" y="85" width="24.666666666666686" height="24"/>
+                                                    <rect key="frame" x="369" y="85.666666666666671" width="24.666666666666686" height="24"/>
                                                     <connections>
                                                         <action selector="addPlatform:" destination="3mW-Lx-toQ" eventType="touchUpInside" id="BwI-rU-XoG"/>
                                                     </connections>
@@ -569,6 +572,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="nvI-0m-9Qx" secondAttribute="trailing" constant="20.333333333333314" id="7on-Uq-tUm"/>
+                                                <constraint firstItem="nvI-0m-9Qx" firstAttribute="centerY" secondItem="YtR-S7-H8y" secondAttribute="centerY" id="BCW-AI-chr"/>
                                                 <constraint firstAttribute="trailing" secondItem="vXg-2l-5GR" secondAttribute="trailing" constant="20" id="CRW-lI-jqj"/>
                                                 <constraint firstItem="vXg-2l-5GR" firstAttribute="top" secondItem="6od-Lt-8Xe" secondAttribute="top" constant="11" id="Pou-8F-Uum"/>
                                                 <constraint firstItem="nvI-0m-9Qx" firstAttribute="leading" secondItem="YtR-S7-H8y" secondAttribute="trailing" constant="24" id="R0f-yI-hJo"/>
@@ -577,7 +581,6 @@
                                                 <constraint firstItem="8sa-sc-HaV" firstAttribute="top" secondItem="6od-Lt-8Xe" secondAttribute="top" constant="11" id="r3k-u9-C66"/>
                                                 <constraint firstItem="8sa-sc-HaV" firstAttribute="leading" secondItem="6od-Lt-8Xe" secondAttribute="leading" constant="20" id="rLa-Yp-rm5"/>
                                                 <constraint firstItem="YtR-S7-H8y" firstAttribute="top" secondItem="8sa-sc-HaV" secondAttribute="bottom" constant="18" id="wIC-6F-aS3"/>
-                                                <constraint firstItem="nvI-0m-9Qx" firstAttribute="top" secondItem="vXg-2l-5GR" secondAttribute="bottom" constant="53" id="z64-CQ-0ne"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="999" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -619,7 +622,7 @@
                                                         <constraint firstAttribute="height" constant="34" id="GDV-X0-eWY"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="URL"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>

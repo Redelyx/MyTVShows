@@ -40,6 +40,10 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
+- (IBAction)deleteShow:(id)sender {
+    [TVShow deleteTVShow:self.theShow];
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 #pragma mark - Table view data source
 
@@ -58,7 +62,6 @@
     // Configure the cell...
     
     Season *s = [self.theShow.seasons objectAtIndex:indexPath.row];
-    
     
     cell.textLabel.text = s.name;
       
