@@ -11,10 +11,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface AddShowTableViewController : UITableViewController <UIPickerViewDelegate, UIPickerViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface AddShowTableViewController : UITableViewController <UIPickerViewDelegate, UIPickerViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate>
 
-@property (weak, nonatomic) IBOutlet UIPickerView *categoryPicker;
-@property (weak, nonatomic) IBOutlet UIPickerView *platformPicker;
+
 
 @end
 

@@ -20,12 +20,36 @@
     
     episode.name = name;
     episode.season = season;
-    episode.score = 0;
+    episode.score = -1;
     episode.watched = NO;
     
     [appDelegate saveContext];
         
     return episode;
 }
+
+-(void)setWatched{
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    
+    if(self.watched == NO){
+        self.watched = YES;
+    }
+    else{
+        self.watched = NO;
+    }
+    
+    [appDelegate saveContext];
+    
+}
+
+-(void)setScoreFromIndex:(NSInteger)index{
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    
+    self.score = index+1;
+    
+    [appDelegate saveContext];
+    
+}
+
 
 @end

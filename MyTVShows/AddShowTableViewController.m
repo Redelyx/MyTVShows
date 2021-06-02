@@ -9,6 +9,7 @@
 #import "AddShowTableViewController.h"
 
 @interface AddShowTableViewController ()
+
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
 @property (weak, nonatomic) IBOutlet UILabel *platformField;
 @property (weak, nonatomic) IBOutlet UITextField *descriptionField;
@@ -16,9 +17,12 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *scoreSegment;
 @property (weak, nonatomic) IBOutlet UITextField *snumberField;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
-@property (nonatomic, weak) NSString *imageName;
+@property (weak, nonatomic) IBOutlet UIPickerView *categoryPicker;
+@property (weak, nonatomic) IBOutlet UIPickerView *platformPicker;
+
 @property (nonatomic, strong) NSMutableArray *platforms;
 @property (nonatomic, strong) NSMutableString *platformsString;
+
 @end
 
 @implementation AddShowTableViewController
@@ -30,12 +34,18 @@
     _categoryPicker.dataSource = self;
     _platformPicker.delegate = self;
     _platformPicker.dataSource = self;
+    _nameField.delegate = self;
+    _descriptionField.delegate = self;
+    _linkField.delegate = self;
+    _snumberField.delegate = self;
+    
     _platforms = [[NSMutableArray alloc]init];
     _platformsString = [[NSMutableString alloc] init];
-    self.platformField.text = @"";
-    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignKeyboard)];
     
-    [self.tableView addGestureRecognizer:gestureRecognizer];
+    self.platformField.text = @"";
+    
+    [self.tableView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self
+                                                                                action:@selector(resignKeyboard)]];
 
     [self.scoreSegment addTarget:self
                           action:@selector(updateSegmentImage)
@@ -46,7 +56,7 @@
 
 #pragma mark - Table view data source
 -(void)updateUI{
-
+    
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -117,7 +127,6 @@ didFinishPickingMediaWithInfo:(nonnull NSDictionary<UIImagePickerControllerInfoK
         
         NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
         f.numberStyle =NSNumberFormatterDecimalStyle;
-        
         NSNumber *n = [f numberFromString:self.snumberField.text];
         
         NSMutableArray *plats = [[NSMutableArray alloc] init];
@@ -136,11 +145,13 @@ didFinishPickingMediaWithInfo:(nonnull NSDictionary<UIImagePickerControllerInfoK
                        image:self.imageView.image
              numberOfSeasons:n];
 
-        [self.nameField setText:@""];
-        [self.descriptionField setText:@""];
-        [self.linkField setText:@""];
-        [self.snumberField setText:@""];
-        [self.platformField setText:@""];
+        NSString *clear = [NSString stringWithFormat:@""];
+        
+        [self.nameField setText:clear];
+        [self.descriptionField setText:clear];
+        [self.linkField setText:clear];
+        [self.snumberField setText:clear];
+        [self.platformField setText:clear];
         
         [self.navigationController popViewControllerAnimated:YES];
         
@@ -165,13 +176,28 @@ didFinishPickingMediaWithInfo:(nonnull NSDictionary<UIImagePickerControllerInfoK
     }
 }
 
-
+//keyboard
 
 -(void)resignKeyboard {
-    [_nameField resignFirstResponder];
-    [_platformField resignFirstResponder];
-    [_descriptionField resignFirstResponder];
-    [_linkField resignFirstResponder];
+    [self.nameField resignFirstResponder];
+    [self.platformField resignFirstResponder];
+    [self.descriptionField resignFirstResponder];
+    [self.linkField resignFirstResponder];
+    [self.snumberField resignFirstResponder];
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    if(textField == self.nameField){
+        [self.descriptionField becomeFirstResponder];
+    }
+    else if (textField == self.descriptionField){
+        [self.linkField becomeFirstResponder];
+    }
+    else if(textField == self.linkField){
+        [self.snumberField becomeFirstResponder];
+    }
+    [textField resignFirstResponder];
+    return YES;
 }
 
 /*

@@ -29,7 +29,7 @@
 
 -(void)updateUI{
     [self.tableView reloadData];
-    NSLog(@"Updated data!");
+    NSLog(@"Updated data in SeasonDetailTableViewController!");
 }
 #pragma mark - Table view data source
 

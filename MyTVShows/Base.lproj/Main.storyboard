@@ -375,10 +375,10 @@
             </objects>
             <point key="canvasLocation" x="2040" y="-91"/>
         </scene>
-        <!--View Controller-->
+        <!--Episode Detail View Controller-->
         <scene sceneID="gvn-bp-xgr">
             <objects>
-                <viewController id="f2A-0h-dx1" sceneMemberID="viewController">
+                <viewController id="f2A-0h-dx1" customClass="EpisodeDetailViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ccj-eC-IRp">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -395,6 +395,9 @@
                                     <constraint firstAttribute="width" constant="30" id="oTO-yn-hyZ"/>
                                 </constraints>
                                 <state key="normal" image="checkmark" catalog="system" backgroundImage="square"/>
+                                <connections>
+                                    <action selector="watchedCheck:" destination="f2A-0h-dx1" eventType="touchUpInside" id="aeb-B1-vwt"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v0m-B2-40g">
                                 <rect key="frame" x="20" y="94.333333333333329" width="73" height="42.333333333333329"/>
@@ -432,8 +435,17 @@
                         <viewLayoutGuide key="safeArea" id="esc-Rc-F50"/>
                     </view>
                     <navigationItem key="navigationItem" id="gaJ-73-3CG">
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="save" id="VhD-GR-v87"/>
+                        <barButtonItem key="rightBarButtonItem" title="Item" style="done" id="VhD-GR-v87">
+                            <connections>
+                                <action selector="enableModify:" destination="f2A-0h-dx1" id="jdM-h2-9OC"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="checkButton" destination="Efi-g5-vrN" id="TgB-bJ-GKn"/>
+                        <outlet property="modifyButton" destination="VhD-GR-v87" id="nV1-4f-KrX"/>
+                        <outlet property="scoreSegment" destination="sIT-Od-e8o" id="cJZ-MA-LmK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sqi-xo-747" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -498,7 +510,7 @@
                                                         <constraint firstAttribute="height" constant="34" id="lWd-jZ-EcA"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -598,7 +610,7 @@
                                                         <constraint firstAttribute="height" constant="34" id="J9Q-8W-70g"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -622,7 +634,7 @@
                                                         <constraint firstAttribute="height" constant="34" id="GDV-X0-eWY"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="URL"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="URL" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -677,7 +689,7 @@
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Number of season(s)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DaY-HF-b8q">
                                                     <rect key="frame" x="20" y="7" width="374" height="34"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="ASCIICapableNumberPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>

@@ -21,7 +21,7 @@
     self.title = @"MyTVShows";
     self.shows = [TVShow allShows];
     
-    _delegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    self.delegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     
     [[NSNotificationCenter defaultCenter]addObserver:self
                                            selector:@selector(updateUI)
@@ -31,12 +31,9 @@
 }
 
 -(void)updateUI{
+    self.shows = [TVShow allShows];
     [self.tableView reloadData];
-    NSLog(@"Updated data!");
-}
-
-
-- (IBAction)emptyData:(id)sender {
+    NSLog(@"Updated data in ShowListTableViewController!");
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

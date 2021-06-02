@@ -16,7 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 +(Episode *) initWithName:(NSString *)name
                    season:(Season *)season;
-
+-(void)setWatched;
+-(void)setScoreFromIndex:(NSInteger)index;
 @end
 
 NS_ASSUME_NONNULL_END
