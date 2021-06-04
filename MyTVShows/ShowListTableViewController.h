@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ShowListTableViewController : UITableViewController
 
+@property (nonatomic, strong) NSNumber *viewType;
+
 @end
 
 NS_ASSUME_NONNULL_END

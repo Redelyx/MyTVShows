@@ -31,8 +31,7 @@
         NSNumber *n = [f numberFromString:self.nEpisodesField.text];
         
         [Season addEpisodesWithNumber:n toSeason:self.theSeason];
-                
-        [self.nEpisodesField setText:@""];
+     
         [self dismissViewControllerAnimated:YES completion:nil];
     } else {
         [self.nEpisodesField setPlaceholder:@"Insert a number"];

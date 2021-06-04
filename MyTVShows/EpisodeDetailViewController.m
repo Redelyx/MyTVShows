@@ -93,7 +93,5 @@
     // Pass the selected object to the new view controller.
 }
 */
-- (IBAction)scoreSegment:(id)sender {
-}
 
 @end

@@ -11,6 +11,7 @@
 @interface ShowListTableViewController () 
 
 @property (nonatomic, strong) NSMutableArray *shows;
+@property (strong, nonatomic) IBOutlet UITableView *searchBar;
 @property (nonatomic, strong) AppDelegate *delegate;
 @end
 
@@ -18,8 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"MyTVShows";
-    self.shows = [TVShow allShows];
+    self.shows = [self pickList];
     
     self.delegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     
@@ -28,12 +28,26 @@
                                                name:NSManagedObjectContextObjectsDidChangeNotification
                                              object:_delegate.context];
     
+    [[NSNotificationCenter defaultCenter]addObserver:self
+                                           selector:@selector(updateUI)
+                                               name:@"ListChanged!"
+                                             object:nil];
+    
+}
+-(NSMutableArray *)pickList{
+    return [TVShow allShows];
 }
 
+-(void)setTitle{
+    switch([self.viewType intValue]){
+        case 1:self.title = @"Category"; break;
+        case 2:self.title = @"Score"; break;
+        default:self.title = @"MyTVShow"; break;
+    }
+}
 -(void)updateUI{
-    self.shows = [TVShow allShows];
+    self.shows = [self pickList];
     [self.tableView reloadData];
-    NSLog(@"Updated data in ShowListTableViewController!");
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

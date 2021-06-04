@@ -20,6 +20,8 @@
 		00514C6F2666858700DFABD9 /* Platform+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 00514C652666858700DFABD9 /* Platform+CoreDataClass.m */; };
 		00514C702666858700DFABD9 /* Platform+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 00514C662666858700DFABD9 /* Platform+CoreDataProperties.m */; };
 		00514C73266685F000DFABD9 /* Episode+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 00514C72266685F000DFABD9 /* Episode+Utils.m */; };
+		00514C762669292200DFABD9 /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00514C752669292200DFABD9 /* MainTabBarController.m */; };
+		00514C7926694EEB00DFABD9 /* MainNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00514C7826694EEB00DFABD9 /* MainNavigationController.m */; };
 		0051888E265BFBB6004EBC2A /* AddShowTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0051888D265BFBB6004EBC2A /* AddShowTableViewController.m */; };
 		00518897265D5AB4004EBC2A /* SeasonDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00518896265D5AB4004EBC2A /* SeasonDetailTableViewController.m */; };
 		0051889A265D6255004EBC2A /* EpisodeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00518899265D6255004EBC2A /* EpisodeDetailViewController.m */; };
@@ -35,6 +37,8 @@
 		00A50A77265EEFB60087DE36 /* TVShow+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A50A76265EEFB60087DE36 /* TVShow+Utils.m */; };
 		00A50AB9265EFE590087DE36 /* Category+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A50AB8265EFE590087DE36 /* Category+Utils.m */; };
 		00A50ABC265F98970087DE36 /* Season+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A50ABB265F98970087DE36 /* Season+Utils.m */; };
+		00F09B06266A6A2500D469D1 /* OptionsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F09B05266A6A2500D469D1 /* OptionsTableViewController.m */; };
+		00F09B09266A6A4100D469D1 /* AddElementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F09B08266A6A4100D469D1 /* AddElementViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +68,10 @@
 		00514C662666858700DFABD9 /* Platform+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Platform+CoreDataProperties.m"; sourceTree = SOURCE_ROOT; };
 		00514C71266685EF00DFABD9 /* Episode+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Episode+Utils.h"; sourceTree = "<group>"; };
 		00514C72266685F000DFABD9 /* Episode+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Episode+Utils.m"; sourceTree = "<group>"; };
+		00514C742669292200DFABD9 /* MainTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainTabBarController.h; sourceTree = "<group>"; };
+		00514C752669292200DFABD9 /* MainTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainTabBarController.m; sourceTree = "<group>"; };
+		00514C7726694EEB00DFABD9 /* MainNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainNavigationController.h; sourceTree = "<group>"; };
+		00514C7826694EEB00DFABD9 /* MainNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainNavigationController.m; sourceTree = "<group>"; };
 		0051888C265BFBB6004EBC2A /* AddShowTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddShowTableViewController.h; sourceTree = "<group>"; };
 		0051888D265BFBB6004EBC2A /* AddShowTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddShowTableViewController.m; sourceTree = "<group>"; };
 		00518895265D5AB4004EBC2A /* SeasonDetailTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SeasonDetailTableViewController.h; sourceTree = "<group>"; };
@@ -91,6 +99,10 @@
 		00A50AB8265EFE590087DE36 /* Category+Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Category+Utils.m"; sourceTree = "<group>"; };
 		00A50ABA265F98970087DE36 /* Season+Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Season+Utils.h"; sourceTree = "<group>"; };
 		00A50ABB265F98970087DE36 /* Season+Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Season+Utils.m"; sourceTree = "<group>"; };
+		00F09B04266A6A2500D469D1 /* OptionsTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OptionsTableViewController.h; sourceTree = "<group>"; };
+		00F09B05266A6A2500D469D1 /* OptionsTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OptionsTableViewController.m; sourceTree = "<group>"; };
+		00F09B07266A6A4100D469D1 /* AddElementViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddElementViewController.h; sourceTree = "<group>"; };
+		00F09B08266A6A4100D469D1 /* AddElementViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddElementViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +136,14 @@
 			isa = PBXGroup;
 			children = (
 				005C335A265566EA003E5607 /* Main.storyboard */,
+				00F09B04266A6A2500D469D1 /* OptionsTableViewController.h */,
+				00F09B05266A6A2500D469D1 /* OptionsTableViewController.m */,
+				00F09B07266A6A4100D469D1 /* AddElementViewController.h */,
+				00F09B08266A6A4100D469D1 /* AddElementViewController.m */,
+				00514C742669292200DFABD9 /* MainTabBarController.h */,
+				00514C752669292200DFABD9 /* MainTabBarController.m */,
+				00514C7726694EEB00DFABD9 /* MainNavigationController.h */,
+				00514C7826694EEB00DFABD9 /* MainNavigationController.m */,
 				005C3351265566EA003E5607 /* AppDelegate.h */,
 				005C3352265566EA003E5607 /* AppDelegate.m */,
 				005C3354265566EA003E5607 /* SceneDelegate.h */,
@@ -268,11 +288,15 @@
 				00514C672666858700DFABD9 /* Category+CoreDataClass.m in Sources */,
 				0051888E265BFBB6004EBC2A /* AddShowTableViewController.m in Sources */,
 				00514C6E2666858700DFABD9 /* TVShow+CoreDataProperties.m in Sources */,
+				00F09B06266A6A2500D469D1 /* OptionsTableViewController.m in Sources */,
 				00514C6C2666858700DFABD9 /* Season+CoreDataProperties.m in Sources */,
 				00514C6D2666858700DFABD9 /* TVShow+CoreDataClass.m in Sources */,
 				00A50AB9265EFE590087DE36 /* Category+Utils.m in Sources */,
 				005C336F26556932003E5607 /* ShowListTableViewController.m in Sources */,
+				00514C762669292200DFABD9 /* MainTabBarController.m in Sources */,
+				00F09B09266A6A4100D469D1 /* AddElementViewController.m in Sources */,
 				00514C692666858700DFABD9 /* Episode+CoreDataClass.m in Sources */,
+				00514C7926694EEB00DFABD9 /* MainNavigationController.m in Sources */,
 				00514C522666854C00DFABD9 /* AddEpisodesViewController.m in Sources */,
 				00514C6A2666858700DFABD9 /* Episode+CoreDataProperties.m in Sources */,
 				00514C682666858700DFABD9 /* Category+CoreDataProperties.m in Sources */,

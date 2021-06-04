@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UIPickerView *categoryPicker;
 @property (weak, nonatomic) IBOutlet UIPickerView *platformPicker;
 
+@property (nonatomic, strong) AppDelegate *delegate;
 @property (nonatomic, strong) NSMutableArray *platforms;
 @property (nonatomic, strong) NSMutableString *platformsString;
 
@@ -44,6 +45,13 @@
     
     self.platformField.text = @"";
     
+    self.delegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self
+                                           selector:@selector(updateUI)
+                                               name:NSManagedObjectContextObjectsDidChangeNotification
+                                             object:_delegate.context];
+    
     [self.tableView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self
                                                                                 action:@selector(resignKeyboard)]];
 
@@ -56,7 +64,8 @@
 
 #pragma mark - Table view data source
 -(void)updateUI{
-    
+    [self.platformPicker reloadAllComponents];
+    [self.categoryPicker reloadAllComponents];
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
