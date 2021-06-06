@@ -39,7 +39,7 @@
 
 -(IBAction)saveRequest:(id)sender {
     if (!([self.nameField.text isEqualToString:@""])){
-        if(self.elementType == 0){
+        if(self.elementType == [NSNumber numberWithInt: 0]){
             [Platform initWithName:self.nameField.text];
         }else{
             [Category initWithName:self.nameField.text];

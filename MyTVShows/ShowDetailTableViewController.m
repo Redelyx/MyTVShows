@@ -16,6 +16,8 @@
 @property (weak, nonatomic) IBOutlet UITextView *linkTextView;
 @property (weak, nonatomic) IBOutlet UILabel *notesLabel;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
+@property (nonatomic, strong) AppDelegate *delegate;
+
 
 @end
 
@@ -25,6 +27,12 @@
     [super viewDidLoad];
 
     self.title = self.theShow.name;
+    self.delegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self
+                                           selector:@selector(updateUI)
+                                               name:NSManagedObjectContextObjectsDidChangeNotification
+                                             object:_delegate.context];
     
     self.imageView.image = [TVShow realImage:self.theShow.image];
     self.categoryLabel.text = self.theShow.category.name;
@@ -40,9 +48,16 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
+-(void)updateUI{
+    [self.tableView reloadData];
+}
 - (IBAction)deleteShow:(id)sender {
     [TVShow deleteTVShow:self.theShow];
     [self.navigationController popViewControllerAnimated:YES];
+}
+- (IBAction)addSeason:(id)sender {
+    NSLog(@"Add Episode pressed");
+    [self.theShow addSeason];
 }
 
 #pragma mark - Table view data source
@@ -52,20 +67,27 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[self.theShow countSeasons] intValue];
+    return [[self.theShow countSeasons] intValue] + 1;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"seasonCell" forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    Season *s = [self.theShow.seasons objectAtIndex:indexPath.row];
-    
-    cell.textLabel.text = s.name;
-      
-    return cell;
+    if(indexPath.row == 0){
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"addSeasonCell" forIndexPath:indexPath];
+        return cell;
+    }
+    else{
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"seasonCell" forIndexPath:indexPath];
+        
+        
+        // Configure the cell...
+        
+        Season *s = [self.theShow.seasons objectAtIndex:indexPath.row-1];
+        
+        cell.textLabel.text = s.name;
+        
+        return cell;
+    }
 }
 
 
@@ -113,12 +135,13 @@
             SeasonDetailTableViewController *vc = (SeasonDetailTableViewController *)segue.destinationViewController;
             
             NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-            Season *s = [self.theShow.seasons objectAtIndex:indexPath.row];
+            Season *s = [self.theShow.seasons objectAtIndex:indexPath.row-1];
             //NSLog([NSString stringWithFormat:@"%ld, %@", indexPath.row, s.name]);
             
             vc.theSeason = s;
         }
     }
+
 }
 
 

@@ -1,18 +1,19 @@
 //
-//  OptionsTableViewController.m
+//  ManageElementTableViewController.m
 //  MyTVShows
 //
-//  Created by Alice on 04/06/2021.
+//  Created by Alice on 06/06/2021.
 //  Copyright © 2021 Alice. All rights reserved.
 //
 
-#import "OptionsTableViewController.h"
+#import "ManageElementTableViewController.h"
 
-@interface OptionsTableViewController ()
+@interface ManageElementTableViewController ()
+@property (weak, nonatomic) IBOutlet UITextField *nameField;
 
 @end
 
-@implementation OptionsTableViewController
+@implementation ManageElementTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -24,19 +25,18 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+#warning Incomplete implementation, return the number of sections
+    return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    switch (section) {
-        case 0: return 2;
-        case 1: return 2;
-        case 2: return 1;
-        default: return 2;
-    }
+#warning Incomplete implementation, return the number of rows
+    return 0;
 }
 
 /*
@@ -83,27 +83,14 @@
 }
 */
 
-
+/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if([segue.identifier isEqualToString:@"ShowAddPlatform"]){
-        if([segue.destinationViewController isKindOfClass:[ManageElementTableViewController class]]){
-            ManageElementTableViewController *vc = (ManageElementTableViewController *)segue.destinationViewController;
-
-                vc.elementType = 0;
-            
-        }
-    }
-    if([segue.identifier isEqualToString:@"ShowAddCategory"]){
-        if([segue.destinationViewController isKindOfClass:[ManageElementTableViewController class]]){
-            ManageElementTableViewController *vc = (ManageElementTableViewController *)segue.destinationViewController;
-            
-                vc.elementType = 1;
-        }
-    }
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
 }
-
+*/
 
 @end

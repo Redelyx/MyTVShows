@@ -42,6 +42,8 @@ NS_ASSUME_NONNULL_BEGIN
 +(UIImage *)realImage:(NSData *)Data;
 
 -(NSMutableString *)printShowPlatforms;
+
+-(void)addSeason;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -129,4 +129,13 @@
     }
     return string;
 }
+
+-(void)addSeason{
+    int n = [self.countSeasons intValue];
+    
+    for(int i = n; i<1+n; i++){
+        Season *s = [Season initWithName:[NSString stringWithFormat:@"Season %i", i+1] show:self];
+        [self addSeasonsObject:s];
+    }
+}
 @end

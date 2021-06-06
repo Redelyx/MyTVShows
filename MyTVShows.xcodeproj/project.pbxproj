@@ -33,6 +33,7 @@
 		005C3364265566EC003E5607 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 005C3363265566EC003E5607 /* main.m */; };
 		005C336F26556932003E5607 /* ShowListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 005C336E26556932003E5607 /* ShowListTableViewController.m */; };
 		005C337226556C86003E5607 /* ShowDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 005C337126556C86003E5607 /* ShowDetailTableViewController.m */; };
+		008DB2AE266CEDDA0093C0DB /* ManageElementTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 008DB2AD266CEDDA0093C0DB /* ManageElementTableViewController.m */; };
 		00A50A39265E61F30087DE36 /* MyTVShow.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 00A50A37265E61F30087DE36 /* MyTVShow.xcdatamodeld */; };
 		00A50A77265EEFB60087DE36 /* TVShow+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A50A76265EEFB60087DE36 /* TVShow+Utils.m */; };
 		00A50AB9265EFE590087DE36 /* Category+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A50AB8265EFE590087DE36 /* Category+Utils.m */; };
@@ -92,6 +93,8 @@
 		005C336E26556932003E5607 /* ShowListTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowListTableViewController.m; sourceTree = "<group>"; };
 		005C337026556C86003E5607 /* ShowDetailTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowDetailTableViewController.h; sourceTree = "<group>"; };
 		005C337126556C86003E5607 /* ShowDetailTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowDetailTableViewController.m; sourceTree = "<group>"; };
+		008DB2AC266CEDDA0093C0DB /* ManageElementTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ManageElementTableViewController.h; sourceTree = "<group>"; };
+		008DB2AD266CEDDA0093C0DB /* ManageElementTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ManageElementTableViewController.m; sourceTree = "<group>"; };
 		00A50A38265E61F30087DE36 /* MyTVShow.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyTVShow.xcdatamodel; sourceTree = "<group>"; };
 		00A50A75265EEFB60087DE36 /* TVShow+Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TVShow+Utils.h"; sourceTree = "<group>"; };
 		00A50A76265EEFB60087DE36 /* TVShow+Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "TVShow+Utils.m"; sourceTree = "<group>"; };
@@ -136,6 +139,8 @@
 			isa = PBXGroup;
 			children = (
 				005C335A265566EA003E5607 /* Main.storyboard */,
+				008DB2AC266CEDDA0093C0DB /* ManageElementTableViewController.h */,
+				008DB2AD266CEDDA0093C0DB /* ManageElementTableViewController.m */,
 				00F09B04266A6A2500D469D1 /* OptionsTableViewController.h */,
 				00F09B05266A6A2500D469D1 /* OptionsTableViewController.m */,
 				00F09B07266A6A4100D469D1 /* AddElementViewController.h */,
@@ -291,6 +296,7 @@
 				00F09B06266A6A2500D469D1 /* OptionsTableViewController.m in Sources */,
 				00514C6C2666858700DFABD9 /* Season+CoreDataProperties.m in Sources */,
 				00514C6D2666858700DFABD9 /* TVShow+CoreDataClass.m in Sources */,
+				008DB2AE266CEDDA0093C0DB /* ManageElementTableViewController.m in Sources */,
 				00A50AB9265EFE590087DE36 /* Category+Utils.m in Sources */,
 				005C336F26556932003E5607 /* ShowListTableViewController.m in Sources */,
 				00514C762669292200DFABD9 /* MainTabBarController.m in Sources */,
