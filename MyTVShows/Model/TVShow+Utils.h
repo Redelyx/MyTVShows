@@ -27,23 +27,34 @@ NS_ASSUME_NONNULL_BEGIN
                   image:(UIImage *)image
         numberOfSeasons:(NSNumber *)sNumber;
 
-+(void)deleteTVShow:(TVShow *)show;
+-(void)deleteTVShow;
 
 +(NSMutableArray *)allShows;
 
 +(NSMutableArray *)allShowsOfCategory:(Category *)category;
+
++(NSMutableArray *)allShowsOfPlatform:(Platform *)platform;
  
 +(NSMutableArray *)allShowsWithScore:(NSNumber *)score;
+
++(NSMutableArray *)allShowsThatSatisfyPredicate:(NSPredicate *)predicate;
 
 -(NSNumber *)countSeasons;
 
 +(BOOL)existShowOfName:(NSString *)name;
 
-+(UIImage *)realImage:(NSData *)Data;
+-(UIImage *)realImage;
 
 -(NSMutableString *)printShowPlatforms;
 
 -(void)addSeason;
+
+-(NSString *)scoreString;
+
+-(NSString *)platformsString;
+
+-(NSString *)showCSVString;
+
 @end
 
 NS_ASSUME_NONNULL_END

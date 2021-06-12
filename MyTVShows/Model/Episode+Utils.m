@@ -28,18 +28,10 @@
     return episode;
 }
 
--(void)setWatched{
+-(void)setWatchedFlag:(BOOL)flag{
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-    
-    if(self.watched == NO){
-        self.watched = YES;
-    }
-    else{
-        self.watched = NO;
-    }
-    
+    self.watched = flag;
     [appDelegate saveContext];
-    
 }
 
 -(void)setScoreFromIndex:(NSInteger)index{
@@ -48,7 +40,6 @@
     self.score = index+1;
     
     [appDelegate saveContext];
-    
 }
 
 

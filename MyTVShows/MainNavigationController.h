@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "ShowListTableViewController.h"
+#import "ManageElementTableViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MainNavigationController : UINavigationController <UINavigationControllerDelegate>
 
-@property (nonatomic, strong) NSNumber *viewType;
+@property (nonatomic) int viewType;
 
 @end
 

@@ -10,7 +10,6 @@
 
 @interface ShowListTableViewController () 
 
-@property (nonatomic, strong) NSMutableArray *shows;
 @property (strong, nonatomic) IBOutlet UITableView *searchBar;
 @property (nonatomic, strong) AppDelegate *delegate;
 @end
@@ -19,7 +18,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.shows = [self pickList];
     
     self.delegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     
@@ -35,13 +33,52 @@
     
 }
 -(NSMutableArray *)pickList{
-    return [TVShow allShows];
+    if(self.element ||  self.showAll){
+        if([self.element respondsToSelector:@selector(name)]){
+            if([Category categoryOfName:[self.element name]] || [Platform platformOfName:[self.element name]]){
+                return [self.element allShows];
+            }else{
+                [self.navigationController popViewControllerAnimated:YES];
+                return [[NSArray arrayWithObject:@"Empty"]mutableCopy];
+            }
+        }else{
+            if([self.element isKindOfClass:[NSNumber class]]){
+                return [TVShow allShowsWithScore:self.element];
+            }
+            else return [TVShow allShows];
+        }
+    }
+    else{
+        [self.navigationController popViewControllerAnimated:YES];
+        return [[NSArray arrayWithObject:@"Empty"]mutableCopy];
+    }
+    /*switch (self.viewType) {
+
+        case 1:
+            if([Category categoryOfName:self.category.name] == nil)
+                [self.navigationController popViewControllerAnimated:YES];
+            else{
+                return [self.category allShows];
+            }
+            
+        case 2:
+            if([Platform platformOfName:self.platform.name] == nil)
+                [self.navigationController popViewControllerAnimated:YES];
+            else{
+                return [self.platform allShows];
+            }
+            
+        case 3: return [TVShow allShowsWithScore:[NSNumber numberWithInt:self.score]];
+            
+        default: return [TVShow allShows];
+    }*/
 }
 
 -(void)setTitle{
-    switch([self.viewType intValue]){
+    switch(self.viewType){
         case 1:self.title = @"Category"; break;
-        case 2:self.title = @"Score"; break;
+        case 2:self.title = @"Platform"; break;
+        case 3:self.title = @"Score"; break;
         default:self.title = @"MyTVShow"; break;
     }
 }
@@ -55,73 +92,45 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.shows.count;
+    return self.shows.count+1;
 }
 
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    // Configure the cell...
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TVShowCell" forIndexPath:indexPath];
-    
-    // Configure the cell...
-    TVShow *s = [self.shows objectAtIndex:indexPath.row];
-    
-    cell.textLabel.text = s.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ season(s)",[s countSeasons]];
-    
-    return cell;
-}
-
-
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
+    if(indexPath.row == 0){
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"addTVShowCell" forIndexPath:indexPath];
+        return cell;
+    }
+    else{
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TVShowCell" forIndexPath:indexPath];
         
+        TVShow *s = [self.shows objectAtIndex:indexPath.row - 1];
+        
+        cell.textLabel.text = s.name;
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%lu season(s)", s.seasons.count];
+        
+        return cell;
+    }
+}
 
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
     if([segue.identifier isEqualToString:@"ShowShowDetail"]){
         if([segue.destinationViewController isKindOfClass:[ShowDetailTableViewController class]]){
             ShowDetailTableViewController *vc = (ShowDetailTableViewController *)segue.destinationViewController;
             
             NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-            vc.theShow = [self.shows objectAtIndex:indexPath.row];
+            vc.theShow = [self.shows objectAtIndex:indexPath.row - 1];
+        }
+    }
+    if([segue.identifier isEqualToString:@"ShowOptions"]){
+        if([segue.destinationViewController isKindOfClass:[OptionsTableViewController class]]){
+            OptionsTableViewController *vc = (OptionsTableViewController *)segue.destinationViewController;
+            vc.category = self.category;
+            vc.platform = self.platform;
+            vc.viewType = self.viewType;
+            vc.shows = self.shows;
         }
     }
 }

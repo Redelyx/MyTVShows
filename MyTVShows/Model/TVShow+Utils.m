@@ -48,25 +48,20 @@
     return show;
 }
 
-+(void)deleteTVShow:(TVShow *)show{
+-(void)deleteTVShow{
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     NSManagedObjectContext *context = appDelegate.persistentContainer.viewContext;
-    
     //delete seasons
-    NSMutableArray *allSeasons = [[context executeFetchRequest:[Season fetchRequest] error:nil] mutableCopy];
+    NSMutableArray *allSeasons = [[self.seasons array] mutableCopy];
     for (Season *selectedSeasons in allSeasons) {
-        if ([selectedSeasons.show.name isEqualToString:show.name]){
-            NSMutableArray *allEpisodes = [[context executeFetchRequest:[Episode fetchRequest] error:nil] mutableCopy];
-            //delete episodes
-            for (Episode *selectedEpisodes in allEpisodes) {
-                if ([selectedEpisodes.season.name isEqualToString:selectedSeasons.name]){
-                    [context deleteObject:selectedEpisodes];
-                }
-            }
-            [context deleteObject:selectedSeasons];
+        NSMutableArray *allEpisodes = [[selectedSeasons.episodes array] mutableCopy];
+        //delete episodes
+        for (Episode *selectedEpisodes in allEpisodes) {
+            [context deleteObject:selectedEpisodes];
         }
+        [context deleteObject:selectedSeasons];
     }
-    [context deleteObject:show];
+    [context deleteObject:self];
     [appDelegate saveContext];
 }
 
@@ -74,51 +69,66 @@
 +(NSMutableArray *)allShows{
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     NSManagedObjectContext *context = appDelegate.persistentContainer.viewContext;
-    NSMutableArray *allShows = [[context executeFetchRequest:[TVShow fetchRequest] error:nil] mutableCopy];
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"TVShow"];
+    [request setSortDescriptors:@[[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES]]];
+    NSMutableArray *allShows = [[context executeFetchRequest:request error:nil] mutableCopy];
     return allShows;
 }
 
 +(NSMutableArray *)allShowsOfCategory:(Category *)category{
     NSMutableArray *shows = [[NSMutableArray alloc] init];
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-    NSMutableArray *allShows = [[appDelegate.context executeFetchRequest:[TVShow fetchRequest] error:nil] mutableCopy];
-    for (TVShow *selectedShows in allShows) {
-        if ([selectedShows.category.name isEqualToString:category.name]) {
-            [shows insertObject:selectedShows atIndex:shows.count];
-        }
-    }
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"TVShow"];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"category == %@", category]];
+    shows = [[appDelegate.context executeFetchRequest:request error:nil] mutableCopy];
+    return shows;
+}
+
++(NSMutableArray *)allShowsOfPlatform:(Platform *)platform{
+    NSMutableArray *shows = [[NSMutableArray alloc] init];
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"TVShow"];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"platform == %@", platform]];
+    shows = [[appDelegate.context executeFetchRequest:request error:nil] mutableCopy];
+    return shows;
+}
+
++(NSMutableArray *)allShowsThatSatisfyPredicate:(NSPredicate *)predicate{
+    NSMutableArray *shows = [[NSMutableArray alloc] init];
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"TVShow"];
+    [request setPredicate:predicate];
+    shows = [[appDelegate.context executeFetchRequest:request error:nil] mutableCopy];
     return shows;
 }
  
 +(NSMutableArray *)allShowsWithScore:(NSNumber *)score{
     NSMutableArray *shows = [[NSMutableArray alloc] init];
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-    NSMutableArray *allShows = [[appDelegate.context executeFetchRequest:[TVShow fetchRequest] error:nil] mutableCopy];
-    for (TVShow *selectedShows in allShows) {
-        if (selectedShows.score == [score intValue]){
-            [shows insertObject:selectedShows atIndex:shows.count];
-        }
-    }
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"TVShow"];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"score == %i", [score intValue]]];
+    shows = [[appDelegate.context executeFetchRequest:request error:nil] mutableCopy];
     return shows;
 }
 
 +(BOOL)existShowOfName:(NSString *)name{
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-    NSMutableArray *allShows = [[appDelegate.context executeFetchRequest:[TVShow fetchRequest] error:nil] mutableCopy];
-    for (TVShow *selectedShows in allShows) {
-        if ([selectedShows.name isEqualToString:name]) {
-            return YES;
-        }
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"TVShow"];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"name == %@", name]];
+    NSMutableArray *shows = [[appDelegate.context executeFetchRequest:request error:nil] mutableCopy];
+    if(shows.count == 0){
+        return NO;
+    }else{
+        return YES;
     }
-    return NO;
 }
 
 -(NSNumber *)countSeasons{
     return [NSNumber numberWithUnsignedLong: self.seasons.count];
 }
 
-+(UIImage *)realImage:(NSData *)data{
-    return [UIImage imageWithData:data];
+-(UIImage *)realImage{
+    return [UIImage imageWithData:self.image];
 }
 
 -(NSMutableString *)printShowPlatforms{
@@ -137,5 +147,27 @@
         Season *s = [Season initWithName:[NSString stringWithFormat:@"Season %i", i+1] show:self];
         [self addSeasonsObject:s];
     }
+}
+
+-(NSString *)scoreString{
+    return [NSString stringWithFormat:@"%@/5", [NSNumber numberWithLong:self.score]];
+}
+
+-(NSString *)platformsString{
+    return [Platform platformsString:self.platforms];
+}
+
+-(NSString *)showCSVString{
+    NSMutableString *record = [[NSString stringWithFormat:@"%@, %@, %@, %@, %lld,", self.name, self.category.name,self.link, self.notes, self.score] mutableCopy];
+    NSMutableArray *arr = [[self.platforms allObjects] mutableCopy];
+    for(int i = 0; i<self.platforms.count; i++){
+        Platform *plat = arr[i];
+        [record appendFormat:@" %@", plat.name];
+        if(i != self.platforms.count-1){
+            [record appendString:@","];
+        }
+    }
+    [record appendString:@"\n"];
+    return record;
 }
 @end

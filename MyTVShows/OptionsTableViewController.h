@@ -8,12 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "ManageElementTableViewController.h"
+#import "AddElementViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface OptionsTableViewController : UITableViewController
 
 @property (nonatomic, strong) NSMutableArray *shows;
+@property (nonatomic) int viewType;
+@property (nonatomic, strong) Platform *platform;
+@property (nonatomic, strong) Category *category;
 
 @end
 

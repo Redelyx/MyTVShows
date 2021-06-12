@@ -17,9 +17,13 @@ NS_ASSUME_NONNULL_BEGIN
 +(Platform *)initWithName:(NSString *)name;
 +(NSMutableArray *)allPlatforms;
 +(Platform *)platformOfName:(NSString *)name;
-+(void)deletePlatform:(Platform *)platform;
 +(NSString *)platformsString:(NSSet *)platforms;
-
+-(void)deletePlatform;
+-(void)deleteElement;
+-(NSMutableArray *)allShows;
+-(void)setNewName:(NSString *)name;
++(Platform *)elementOfName:(NSString *)name;
+-(NSString *)displayName;
 @end
 
 NS_ASSUME_NONNULL_END

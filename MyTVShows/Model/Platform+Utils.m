@@ -11,14 +11,11 @@
 @implementation Platform (Utils)
 
 +(Platform *)initWithName:(NSString *)name{
-    //if(![Platform existPlatformOfName:name]){
-        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-        Platform *platform = [[Platform alloc] initWithContext:appDelegate.context];
-        platform.name = name;
-        [appDelegate saveContext];
-        return platform;
-    //}
-    //else return nil;
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    Platform *platform = [[Platform alloc] initWithContext:appDelegate.context];
+    platform.name = name;
+    [appDelegate saveContext];
+    return platform;
 }
 
 +(NSMutableArray *)allPlatforms{
@@ -28,31 +25,26 @@
 }
 
 +(BOOL)existPlatformOfName:(NSString *)name{
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-    NSMutableArray *allPlatforms = [[appDelegate.context executeFetchRequest:[Platform fetchRequest] error:nil] mutableCopy];
-    for (Platform *selectedPlatform in allPlatforms) {
-        if ([selectedPlatform.name isEqualToString:name]) {
-            return YES;
-        }
-    }
-    return NO;
+    if(![self platformOfName:name]) return NO;
+    else return YES;
 }
 
 +(Platform *)platformOfName:(NSString *)name{
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-    NSMutableArray *allPlatforms = [[appDelegate.context executeFetchRequest:[Platform fetchRequest] error:nil] mutableCopy];
-    for (Platform *selectedPlatform in allPlatforms) {
-        if ([selectedPlatform.name isEqualToString:name]) {
-            return selectedPlatform;
-        }
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Platform"];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"name == %@", name]];
+    NSMutableArray *platforms = [[appDelegate.context executeFetchRequest:request error:nil] mutableCopy];
+    if (platforms.count == 0) {
+        return nil;
+    }else{
+        return platforms[0];
     }
-    return nil;
 }
 
-+(void)deletePlatform:(Platform *)platform{
+-(void)deletePlatform{
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     NSManagedObjectContext *context = appDelegate.persistentContainer.viewContext;
-    [context deleteObject:platform];
+    [context deleteObject:self];
     [appDelegate saveContext];
 }
 
@@ -63,6 +55,26 @@
             [platformStringList appendString:[NSString stringWithFormat:@"%@ ", plat.name]];
     }
     return platformStringList;
+}
+
+-(NSMutableArray *)allShows{
+    return [[self.shows allObjects] mutableCopy];
+}
+
+-(void)setNewName:(NSString *)name{
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    
+    self.name = name;
+    
+    [appDelegate saveContext];
+}
+
+-(void)deleteElement{
+    [self deletePlatform];
+}
+
++(Platform *)elementOfName:(NSString *)name{
+    return [Platform platformOfName:name];
 }
 
 @end

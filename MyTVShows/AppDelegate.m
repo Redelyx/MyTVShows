@@ -38,20 +38,20 @@
 +(void)emptyData{
     NSMutableArray *shows = [TVShow allShows];
     for(TVShow *show in shows){
-        [TVShow deleteTVShow:show];
+        [show deleteTVShow];
     }
     NSLog(@"shows: %lu", shows.count);
     
     
     NSMutableArray *plats = [Platform allPlatforms];
     for(Platform *plat in plats){
-        [Platform deletePlatform:plat];
+        [plat deletePlatform];
     }
     NSLog(@"plats: %lu", plats.count);
     
     NSMutableArray *cats = [Category allCategories];
     for(Category *cat in cats){
-        [Category deleteCategory:cat];
+        [cat deleteCategory];
     }
     NSLog(@"cats: %lu", cats.count);
 

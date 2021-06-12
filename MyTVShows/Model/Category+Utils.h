@@ -17,7 +17,13 @@ NS_ASSUME_NONNULL_BEGIN
 +(Category *)initWithName:(NSString *)name;
 +(NSMutableArray *)allCategories;
 +(Category *)categoryOfName:(NSString *)name;
-+(void)deleteCategory:(Category *)category;
+-(void)deleteCategory;
+-(NSMutableArray *)allShows;
+-(void)setNewName:(NSString *)name;
+-(void)deleteElement;
++(Category *)elementOfName:(NSString *)name;
+-(NSString *)displayName;
+
 
 @end
 

@@ -19,17 +19,16 @@
     [super viewDidLoad];
     self.title = self.theSeason.name;
     
-    _delegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    self.delegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
 
     [[NSNotificationCenter defaultCenter]addObserver:self
                                             selector:@selector(updateUI)
                                                 name:NSManagedObjectContextObjectsDidChangeNotification
-                                              object:_delegate.context];
+                                              object:self.delegate.context];
 }
 
 -(void)updateUI{
     [self.tableView reloadData];
-    NSLog(@"Updated data in SeasonDetailTableViewController!");
 }
 #pragma mark - Table view data source
 
@@ -38,65 +37,25 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[Season countEpisodesOfSeason:(Season *)self.theSeason] intValue];;
+    return [[self.theSeason countEpisodes] intValue];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
    
- 
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"episodeCell" forIndexPath:indexPath];
     
-    // Configure the cell...
     NSOrderedSet *eps = self.theSeason.episodes;
     
     Episode *s = [eps objectAtIndex:indexPath.row];
-    
-    
     
     cell.textLabel.text = s.name;
     
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if([segue.identifier isEqualToString:@"ShowEpisodeDetail"]){
         if([segue.destinationViewController isKindOfClass:[EpisodeDetailViewController class]]){

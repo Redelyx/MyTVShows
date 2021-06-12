@@ -14,7 +14,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface AddElementViewController : UIViewController
 
-@property (nonatomic, strong) NSNumber *elementType;
+@property (nonatomic) int viewType; //0 new, 1 edit;
+@property (nonatomic) int elementType;
+@property (nonatomic, strong) Platform *platform;
+@property (nonatomic, strong) Category *category;
 
 @end
 

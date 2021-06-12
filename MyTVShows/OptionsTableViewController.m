@@ -9,7 +9,8 @@
 #import "OptionsTableViewController.h"
 
 @interface OptionsTableViewController ()
-
+@property (weak, nonatomic) IBOutlet UITableViewCell *editCell;
+@property (nonatomic, strong) AppDelegate *appDelegate;
 @end
 
 @implementation OptionsTableViewController
@@ -17,90 +18,102 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    self.appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [[NSNotificationCenter defaultCenter]addObserver:self
+                                           selector:@selector(updateUI)
+                                               name:NSManagedObjectContextObjectsDidChangeNotification
+                                             object:self.appDelegate.context];
+    
+    [self updateUI];
+}
+
+-(void)updateUI{
+    switch (self.viewType) {
+        case 0: [self.editCell setHidden:YES]; break;
+        case 1:
+            if([Category categoryOfName:self.category.name] == nil)
+                [self.navigationController popViewControllerAnimated:YES];
+            else{
+                self.editCell.textLabel.text = [NSString stringWithFormat:@"Edit category: %@", self.category.name];
+            }
+            break;
+        case 2:
+            if([Platform platformOfName:self.platform.name] == nil)
+                [self.navigationController popViewControllerAnimated:YES];
+            else {
+                self.editCell.textLabel.text = [NSString stringWithFormat:@"Edit platform: %@", self.platform.name];
+            }
+            break;
+        case 3: [self.editCell setHidden:YES]; break;
+        default: [self.editCell setHidden:YES]; break;
+    }
+}
+
+-(void)saveFileAsCSV{
+    NSString *root = [self dataFilePath];
+    
+    NSMutableString *file = [[NSMutableString alloc]initWithString:@""];
+
+    for(TVShow *show in self.shows){
+        [file appendString:[show showCSVString]];
+    }
+    NSLog(@"%@",root);
+    [file writeToFile:root atomically:YES encoding:NSUTF8StringEncoding error:NULL];
+}
+
+-(NSString *)dataFilePath {
+    return [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory , NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"shows.csv"];
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     switch (section) {
         case 0: return 2;
-        case 1: return 2;
-        case 2: return 1;
-        default: return 2;
+        default: return 1;
     }
 }
 
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(indexPath.row == 1){
+        [self saveFileAsCSV];
+    }
 }
-*/
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if([segue.identifier isEqualToString:@"ShowAddPlatform"]){
+       
+    if([segue.identifier isEqualToString:@"showPlatforms"]){
         if([segue.destinationViewController isKindOfClass:[ManageElementTableViewController class]]){
             ManageElementTableViewController *vc = (ManageElementTableViewController *)segue.destinationViewController;
 
-                vc.elementType = 0;
-            
+                vc.elementType = 2;
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"ElementChanged!" object:nil];            
         }
     }
-    if([segue.identifier isEqualToString:@"ShowAddCategory"]){
+    if([segue.identifier isEqualToString:@"showCategories"]){
         if([segue.destinationViewController isKindOfClass:[ManageElementTableViewController class]]){
             ManageElementTableViewController *vc = (ManageElementTableViewController *)segue.destinationViewController;
             
                 vc.elementType = 1;
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"ElementChanged!" object:nil];
+        }
+    }
+    if([segue.identifier isEqualToString:@"editElement"]){
+        if([segue.destinationViewController isKindOfClass:[AddElementViewController class]]){
+            AddElementViewController *vc = (AddElementViewController *)segue.destinationViewController;
+            
+            vc.elementType = self.viewType;
+            vc.platform = self.platform;
+            vc.category = self.category;
+            vc.viewType = 1;
+
         }
     }
 }

@@ -18,8 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 +(Season *) initWithName:(NSString *)name
                     show:(TVShow *)show;
 
-+(NSNumber *)countEpisodesOfSeason:(Season *)season;
-+(void)addEpisodesWithNumber:(NSNumber *)number toSeason:(Season *)season;
+-(NSNumber *)countEpisodes;
+-(void)addNumberOfEpisodes:(NSNumber *)number;
 
 @end
 

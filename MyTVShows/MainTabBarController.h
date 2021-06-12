@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ShowListTableViewController.h"
 #import "MainNavigationController.h"
+#import "ManageElementTableViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

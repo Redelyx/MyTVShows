@@ -9,6 +9,7 @@
 #import "MainTabBarController.h"
 
 @interface MainTabBarController ()
+
 @property (weak, nonatomic) IBOutlet UITabBar *myTabBar;
 
 @end
@@ -19,14 +20,11 @@
     [super viewDidLoad];
     self.delegate = self;
     [self setMyTabBar:self.myTabBar];
-    
-    // Do any additional setup after loading the view.
 }
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController{
     if([viewController isKindOfClass:[MainNavigationController class]]){
         MainNavigationController *navigationController = (MainNavigationController *)viewController;
-        navigationController.viewType = [NSNumber numberWithUnsignedLong:self.selectedIndex];
-        NSLog(@"TC %@",[NSNumber numberWithUnsignedLong:self.selectedIndex]);
+        navigationController.viewType = [[NSNumber numberWithUnsignedLong:self.selectedIndex] intValue];
     }
 }
 
@@ -38,11 +36,15 @@
     UITabBarItem *item1 = myTabBar.items[1];
     item1.image = [UIImage systemImageNamed:@"bookmark"];
     item1.selectedImage = [UIImage systemImageNamed:@"bookmark"];
-    item1.title = @"Category";
+    item1.title = @"Categories";
     UITabBarItem *item2 = myTabBar.items[2];
-    item2.image = [UIImage systemImageNamed:@"star"];
-    item2.selectedImage = [UIImage systemImageNamed:@"star"];
-    item2.title = @"Score";
+    item2.image = [UIImage systemImageNamed:@"bookmark"];
+    item2.selectedImage = [UIImage systemImageNamed:@"bookmark"];
+    item2.title = @"Platforms";
+    UITabBarItem *item3 = myTabBar.items[3];
+    item3.image = [UIImage systemImageNamed:@"star"];
+    item3.selectedImage = [UIImage systemImageNamed:@"star"];
+    item3.title = @"Score";
 }
 
 

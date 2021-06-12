@@ -25,17 +25,16 @@
     return season;
 }
 
-+(NSNumber *)countEpisodesOfSeason:(Season *)season{
-    return [NSNumber numberWithUnsignedLong: season.episodes.count];
+-(NSNumber *)countEpisodes{
+    return [NSNumber numberWithUnsignedLong: self.episodes.count];
 }
 
-+(void)addEpisodesWithNumber:(NSNumber *)number
-                    toSeason:(Season *)season{
-    int n = [[Season countEpisodesOfSeason:season] intValue];
+-(void)addNumberOfEpisodes:(NSNumber *)number{
+    int n = [[self countEpisodes] intValue];
     
     for(int i = n; i<[number intValue]+n; i++){
-        Episode *e = [Episode initWithName:[NSString stringWithFormat:@"Episode %i", i+1] season:season];
-        [season addEpisodesObject:e];
+        Episode *e = [Episode initWithName:[NSString stringWithFormat:@"Episode %i", i+1] season:self];
+        [self addEpisodesObject:e];
     }
 }
 

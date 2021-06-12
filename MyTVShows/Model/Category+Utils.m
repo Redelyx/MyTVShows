@@ -11,15 +11,11 @@
 @implementation Category (Utils)
 
 +(Category *)initWithName:(NSString *)name{
-    //if(![Category existCategoryOfName:name]){
-        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-        Category *category = [[Category alloc] initWithContext:appDelegate.context];
-        category.name = name;
-        [appDelegate saveContext];
-        return category;
-    //}
-    //else return nil;
-
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    Category *category = [[Category alloc] initWithContext:appDelegate.context];
+    category.name = name;
+    [appDelegate saveContext];
+    return category;
 }
 
 +(NSMutableArray *)allCategories{
@@ -29,14 +25,8 @@
 }
 
 +(BOOL)existCategoryOfName:(NSString *)name{
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-    NSMutableArray *allCategories = [[appDelegate.context executeFetchRequest:[Category fetchRequest] error:nil] mutableCopy];
-    for (Category *selectedCategory in allCategories) {
-        if ([selectedCategory.name isEqualToString:name]) {
-            return YES;
-        }
-    }
-    return NO;
+    if(![self categoryOfName:name]) return NO;
+    else return YES;
 }
 
 +(Category *)categoryOfName:(NSString *)name{
@@ -50,12 +40,31 @@
     return nil;
 }
 
-+(void)deleteCategory:(Category *)category{
+-(void)deleteCategory{
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     NSManagedObjectContext *context = appDelegate.persistentContainer.viewContext;
-    [context deleteObject:category];
+    [context deleteObject:self];
     [appDelegate saveContext];
 }
 
+-(NSMutableArray *)allShows{
+    return [[self.shows allObjects] mutableCopy];
+}
+
+-(void)setNewName:(NSString *)name{
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    
+    self.name = name;
+    
+    [appDelegate saveContext];
+}
+
+-(void)deleteElement{
+    [self deleteCategory];
+}
+
++(Category *)elementOfName:(NSString *)name{
+    return [Category categoryOfName:name];
+}
 
 @end

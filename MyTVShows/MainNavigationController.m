@@ -10,6 +10,8 @@
 
 @interface MainNavigationController ()
 
+@property (nonatomic, strong) AppDelegate *appDelegate;
+
 @end
 
 @implementation MainNavigationController
@@ -18,37 +20,45 @@
     [super viewDidLoad];
     self.delegate = self;
     
-
-    // Do any additional setup after loading the view.
+    self.appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
 }
 
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated{
     if([viewController isKindOfClass:[ShowListTableViewController class]]){
         ShowListTableViewController *vController = (ShowListTableViewController *)viewController;
         vController.viewType = self.viewType;
-        //NSLog(@"NC %@",self.viewType);
-        //vController.title = [self setTitle];
+        vController.shows = [TVShow allShows];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"ListChanged!" object:self];
+    }
+    if([viewController isKindOfClass:[ManageElementTableViewController class]]){
+        ManageElementTableViewController *vController = (ManageElementTableViewController *)viewController;
+        vController.elementType = self.viewType;
+        switch(self.viewType){
+            case 1: vController.elements = [Category allCategories]; vController.title = [self setTitle]; break;
+            case 2: vController.elements = [Platform allPlatforms]; vController.title = [self setTitle]; break;
+            case 3: vController.elements = [self myIntArray]; vController.title = [self setTitle]; break;
+            default: vController.elements = [NSMutableArray arrayWithObject:@"Error"]; vController.title = [self setTitle]; break;
+        }
         [[NSNotificationCenter defaultCenter] postNotificationName:@"ListChanged!" object:self];
     }
 
 }
+
+- (NSMutableArray *)myIntArray{
+    NSMutableArray *myInt = [[NSMutableArray alloc]init];
+    for(NSInteger i = 1; i<=5; i++){
+        [myInt addObject:[NSNumber numberWithInteger:i]];
+    }
+    return myInt;
+}
+
 -(NSString *)setTitle{
-    switch([self.viewType intValue]){
-        case 1:return @"Category";
-        case 2:return @"Score";
+    switch(self.viewType){
+        case 1:return @"Categories";
+        case 2:return @"Platforms";
+        case 3:return @"Score";
         default:return @"MyTVShow";
     }
 }
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

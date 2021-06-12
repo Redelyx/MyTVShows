@@ -9,26 +9,20 @@
 #import "EpisodeDetailViewController.h"
 
 @interface EpisodeDetailViewController ()
+
 @property (weak, nonatomic) IBOutlet UIButton *checkButton;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *scoreSegment;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *modifyButton;
 @property (nonatomic, strong) AppDelegate *delegate;
-
+@property (nonatomic) BOOL localFlag;
 @end
 
 @implementation EpisodeDetailViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     self.delegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-    
+    self.title = self.theEpisode.name;
     [self updateUI];
-    
-    self.modifyButton.title = @"Edit";
-    
-    [self.scoreSegment setEnabled:NO];
-    [self.checkButton setEnabled:NO];
     
     [self.scoreSegment addTarget:self
                           action:@selector(updateSegmentImage)
@@ -38,7 +32,7 @@
                                            selector:@selector(updateUI)
                                                name:NSManagedObjectContextObjectsDidChangeNotification
                                              object:_delegate.context];
-    
+    self.localFlag = self.theEpisode.watched;
 }
 
 
@@ -52,27 +46,17 @@
     if(self.theEpisode.score<=5 && self.theEpisode.score>=0){
         self.scoreSegment.selectedSegmentIndex = self.theEpisode.score-1;
     }
+    
     [self updateSegmentImage];
-    NSLog(@"Updated data in EpisodeDetailViewController!");
 }
 
 - (IBAction)watchedCheck:(id)sender{
-    [self.theEpisode setWatched];
-}
-
-- (IBAction)enableModify:(id)sender {
-    if([self.scoreSegment isEnabled]){
-        [self.scoreSegment setEnabled:NO];
-        [self.checkButton setEnabled:NO];
-        self.modifyButton.title = @"Edit";
-        [self.theEpisode setScoreFromIndex:self.scoreSegment.selectedSegmentIndex];
-        
+    if(self.localFlag){
+        [self.checkButton setImage:[UIImage systemImageNamed:@" "] forState:UIControlStateNormal];
+    }else{
+        [self.checkButton setImage:[UIImage systemImageNamed:@"checkmark"] forState:UIControlStateNormal];
     }
-    else{
-        [self.scoreSegment setEnabled:YES];
-        [self.checkButton setEnabled:YES];
-        self.modifyButton.title = @"Save";
-    }
+    self.localFlag = !self.localFlag;
 }
 
 - (void)updateSegmentImage{
@@ -84,14 +68,9 @@
     }
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)viewWillDisappear:(BOOL)animated{
+    [self.theEpisode setScoreFromIndex:self.scoreSegment.selectedSegmentIndex];
+    [self.theEpisode setWatchedFlag:self.localFlag];
 }
-*/
 
 @end
