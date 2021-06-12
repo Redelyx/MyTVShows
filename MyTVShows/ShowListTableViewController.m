@@ -10,7 +10,6 @@
 
 @interface ShowListTableViewController () 
 
-@property (strong, nonatomic) IBOutlet UITableView *searchBar;
 @property (nonatomic, strong) AppDelegate *delegate;
 @end
 
@@ -31,9 +30,18 @@
                                                name:@"ListChanged!"
                                              object:nil];
     
+    [[NSNotificationCenter defaultCenter]addObserver:self
+                                           selector:@selector(popViewController)
+                                               name:@"ItemDeleted!"
+                                             object:nil];
+    
 }
+-(void)popViewController{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 -(NSMutableArray *)pickList{
-    if(self.element ||  self.showAll){
+    /*if(self.element ||  self.showAll){
         if([self.element respondsToSelector:@selector(name)]){
             if([Category categoryOfName:[self.element name]] || [Platform platformOfName:[self.element name]]){
                 return [self.element allShows];
@@ -51,8 +59,8 @@
     else{
         [self.navigationController popViewControllerAnimated:YES];
         return [[NSArray arrayWithObject:@"Empty"]mutableCopy];
-    }
-    /*switch (self.viewType) {
+    }*/
+    switch (self.viewType) {
 
         case 1:
             if([Category categoryOfName:self.category.name] == nil)
@@ -71,7 +79,7 @@
         case 3: return [TVShow allShowsWithScore:[NSNumber numberWithInt:self.score]];
             
         default: return [TVShow allShows];
-    }*/
+    }
 }
 
 -(void)setTitle{

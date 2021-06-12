@@ -29,15 +29,18 @@
         vController.viewType = self.viewType;
         vController.shows = [TVShow allShows];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"ListChanged!" object:self];
+        NSLog(@"NC %d", self.viewType);
+
     }
     if([viewController isKindOfClass:[ManageElementTableViewController class]]){
         ManageElementTableViewController *vController = (ManageElementTableViewController *)viewController;
         vController.elementType = self.viewType;
+        vController.title = [self setTitle];
         switch(self.viewType){
-            case 1: vController.elements = [Category allCategories]; vController.title = [self setTitle]; break;
-            case 2: vController.elements = [Platform allPlatforms]; vController.title = [self setTitle]; break;
-            case 3: vController.elements = [self myIntArray]; vController.title = [self setTitle]; break;
-            default: vController.elements = [NSMutableArray arrayWithObject:@"Error"]; vController.title = [self setTitle]; break;
+            case 1: vController.elements = [Category allCategories];  break;
+            case 2: vController.elements = [Platform allPlatforms]; break;
+            case 3: vController.elements = [self myIntArray]; break;
+            default: vController.elements = [NSMutableArray arrayWithObject:@"Error"]; break;
         }
         [[NSNotificationCenter defaultCenter] postNotificationName:@"ListChanged!" object:self];
     }

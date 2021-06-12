@@ -119,7 +119,7 @@
             ShowListTableViewController *vc = (ShowListTableViewController *)segue.destinationViewController;
             
             NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-            if([[self.elements objectAtIndex:indexPath.row - 1]respondsToSelector:@selector(name)]){
+            /*if([[self.elements objectAtIndex:indexPath.row - 1]respondsToSelector:@selector(name)]){
                 vc.element = [self.elements objectAtIndex:indexPath.row - 1];
                 vc.shows = [vc.element allShows];
                 vc.title = [vc.element name];
@@ -127,8 +127,8 @@
                 vc.element = [NSNumber numberWithLong:(int)indexPath.row + 1];
                 [TVShow allShowsWithScore:vc.element];
                 vc.title = [NSString stringWithFormat:@"%@ star", vc.element];
-            }
-    /*
+            }*/
+    
             if(self.elementType == 1){
                 vc.category = [self.elements objectAtIndex:indexPath.row - 1];
                 vc.shows = [vc.category allShows];
@@ -142,7 +142,7 @@
                 [TVShow allShowsWithScore:[NSNumber numberWithInt:vc.score]];
                 vc.title = [NSString stringWithFormat:@"%d star", vc.score];
             }
-            vc.viewType = self.elementType;*/
+            vc.viewType = self.elementType;
         }
     }
     

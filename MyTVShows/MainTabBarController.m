@@ -21,10 +21,12 @@
     self.delegate = self;
     [self setMyTabBar:self.myTabBar];
 }
+
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController{
     if([viewController isKindOfClass:[MainNavigationController class]]){
         MainNavigationController *navigationController = (MainNavigationController *)viewController;
         navigationController.viewType = [[NSNumber numberWithUnsignedLong:self.selectedIndex] intValue];
+        //NSLog(@"TB %@", [NSNumber numberWithUnsignedLong:self.selectedIndex]);
     }
 }
 

@@ -29,6 +29,13 @@
 }
 
 -(void)updateUI{
+    /*switch (self.viewType) {
+        case 0: [self.editCell setHidden:YES]; break;
+        case 1: self.editCell.textLabel.text = [NSString stringWithFormat:@"Edit category: %@", self.category.name];
+        case 2: self.editCell.textLabel.text = [NSString stringWithFormat:@"Edit platform: %@", self.platform.name];
+        case 3: [self.editCell setHidden:YES]; break;
+        default: [self.editCell setHidden:YES]; break;
+    }*/
     switch (self.viewType) {
         case 0: [self.editCell setHidden:YES]; break;
         case 1:
