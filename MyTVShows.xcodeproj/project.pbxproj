@@ -34,7 +34,7 @@
 		005C336F26556932003E5607 /* ShowListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 005C336E26556932003E5607 /* ShowListTableViewController.m */; };
 		005C337226556C86003E5607 /* ShowDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 005C337126556C86003E5607 /* ShowDetailTableViewController.m */; };
 		008DB2AE266CEDDA0093C0DB /* ManageElementTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 008DB2AD266CEDDA0093C0DB /* ManageElementTableViewController.m */; };
-		0091CD162674E719006736F2 /* NSNumber+ScoreUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0091CD152674E719006736F2 /* NSNumber+ScoreUtils.m */; };
+		0091CD19267617F2006736F2 /* EditShowTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0091CD18267617F2006736F2 /* EditShowTableViewController.m */; };
 		009530ED2670F4880017DC5D /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 009530EC2670F4880017DC5D /* AboutViewController.m */; };
 		00A50A39265E61F30087DE36 /* MyTVShow.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 00A50A37265E61F30087DE36 /* MyTVShow.xcdatamodeld */; };
 		00A50A77265EEFB60087DE36 /* TVShow+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A50A76265EEFB60087DE36 /* TVShow+Utils.m */; };
@@ -98,8 +98,8 @@
 		008DB2AC266CEDDA0093C0DB /* ManageElementTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ManageElementTableViewController.h; sourceTree = "<group>"; };
 		008DB2AD266CEDDA0093C0DB /* ManageElementTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ManageElementTableViewController.m; sourceTree = "<group>"; };
 		0091CD102674E4EB006736F2 /* GenericObj.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GenericObj.h; sourceTree = "<group>"; };
-		0091CD142674E719006736F2 /* NSNumber+ScoreUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSNumber+ScoreUtils.h"; sourceTree = SOURCE_ROOT; };
-		0091CD152674E719006736F2 /* NSNumber+ScoreUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+ScoreUtils.m"; sourceTree = SOURCE_ROOT; };
+		0091CD17267617F2006736F2 /* EditShowTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditShowTableViewController.h; sourceTree = "<group>"; };
+		0091CD18267617F2006736F2 /* EditShowTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditShowTableViewController.m; sourceTree = "<group>"; };
 		009530EB2670F4880017DC5D /* AboutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		009530EC2670F4880017DC5D /* AboutViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		00A50A38265E61F30087DE36 /* MyTVShow.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyTVShow.xcdatamodel; sourceTree = "<group>"; };
@@ -150,16 +150,16 @@
 				005C3352265566EA003E5607 /* AppDelegate.m */,
 				005C3354265566EA003E5607 /* SceneDelegate.h */,
 				005C3355265566EA003E5607 /* SceneDelegate.m */,
+				00514C742669292200DFABD9 /* MainTabBarController.h */,
+				00514C752669292200DFABD9 /* MainTabBarController.m */,
+				00514C7726694EEB00DFABD9 /* MainNavigationController.h */,
+				00514C7826694EEB00DFABD9 /* MainNavigationController.m */,
 				008DB2AC266CEDDA0093C0DB /* ManageElementTableViewController.h */,
 				008DB2AD266CEDDA0093C0DB /* ManageElementTableViewController.m */,
 				00F09B04266A6A2500D469D1 /* OptionsTableViewController.h */,
 				00F09B05266A6A2500D469D1 /* OptionsTableViewController.m */,
 				00F09B07266A6A4100D469D1 /* AddElementViewController.h */,
 				00F09B08266A6A4100D469D1 /* AddElementViewController.m */,
-				00514C742669292200DFABD9 /* MainTabBarController.h */,
-				00514C752669292200DFABD9 /* MainTabBarController.m */,
-				00514C7726694EEB00DFABD9 /* MainNavigationController.h */,
-				00514C7826694EEB00DFABD9 /* MainNavigationController.m */,
 				005C336D26556932003E5607 /* ShowListTableViewController.h */,
 				005C336E26556932003E5607 /* ShowListTableViewController.m */,
 				005C337026556C86003E5607 /* ShowDetailTableViewController.h */,
@@ -170,6 +170,8 @@
 				00518899265D6255004EBC2A /* EpisodeDetailViewController.m */,
 				0051888C265BFBB6004EBC2A /* AddShowTableViewController.h */,
 				0051888D265BFBB6004EBC2A /* AddShowTableViewController.m */,
+				0091CD17267617F2006736F2 /* EditShowTableViewController.h */,
+				0091CD18267617F2006736F2 /* EditShowTableViewController.m */,
 				00514C512666854C00DFABD9 /* AddEpisodesViewController.h */,
 				00514C502666854C00DFABD9 /* AddEpisodesViewController.m */,
 				009530EB2670F4880017DC5D /* AboutViewController.h */,
@@ -186,8 +188,6 @@
 		005C337C265587CB003E5607 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				0091CD142674E719006736F2 /* NSNumber+ScoreUtils.h */,
-				0091CD152674E719006736F2 /* NSNumber+ScoreUtils.m */,
 				0091CD102674E4EB006736F2 /* GenericObj.h */,
 				00514C532666858700DFABD9 /* Category+CoreDataProperties.h */,
 				00514C542666858700DFABD9 /* Category+CoreDataClass.h */,
@@ -313,10 +313,10 @@
 				005C336F26556932003E5607 /* ShowListTableViewController.m in Sources */,
 				00514C762669292200DFABD9 /* MainTabBarController.m in Sources */,
 				00F09B09266A6A4100D469D1 /* AddElementViewController.m in Sources */,
-				0091CD162674E719006736F2 /* NSNumber+ScoreUtils.m in Sources */,
 				00514C692666858700DFABD9 /* Episode+CoreDataClass.m in Sources */,
 				00514C7926694EEB00DFABD9 /* MainNavigationController.m in Sources */,
 				00514C522666854C00DFABD9 /* AddEpisodesViewController.m in Sources */,
+				0091CD19267617F2006736F2 /* EditShowTableViewController.m in Sources */,
 				00514C6A2666858700DFABD9 /* Episode+CoreDataProperties.m in Sources */,
 				00514C682666858700DFABD9 /* Category+CoreDataProperties.m in Sources */,
 				005C337226556C86003E5607 /* ShowDetailTableViewController.m in Sources */,

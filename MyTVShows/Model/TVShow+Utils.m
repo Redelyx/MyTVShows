@@ -48,6 +48,35 @@
     return show;
 }
 
+-(void)editWithName:(NSString *)name
+           category:(Category *)category
+          platforms:(NSMutableArray *)platforms
+               link:(NSString *)link
+              notes:(NSString *)notes
+              score:(NSNumber *)score
+              image:(UIImage *)image{
+    
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+                
+    self.name = name;
+    [category addShowsObject:self];
+    self.category = category;
+    NSMutableArray *array = [[self.platforms allObjects]mutableCopy];
+    for(int i = 0; i<array.count; i++){
+        [self removePlatformsObject:array[i]];
+    }
+    for(int i = 0; i<platforms.count; i++){
+        [platforms[i] addShowsObject:self];
+    }
+    [self addPlatforms:[NSSet setWithArray:platforms]];
+    self.link = link;
+    self.notes = notes;
+    self.score = [score intValue];
+    self.image = UIImageJPEGRepresentation(image, 1);
+    [appDelegate saveContext];
+
+}
+
 -(void)deleteTVShow{
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     NSManagedObjectContext *context = appDelegate.persistentContainer.viewContext;
@@ -169,5 +198,14 @@
     }
     [record appendString:@"\n"];
     return record;
+}
+
+-(BOOL)isOnPlatform:(Platform *)platform{
+    for(Platform *plat in self.platforms){
+        if([plat.name isEqualToString:platform.name]){
+            return YES;
+        }
+    }
+    return NO;
 }
 @end

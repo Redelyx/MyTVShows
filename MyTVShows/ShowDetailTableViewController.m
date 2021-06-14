@@ -7,7 +7,6 @@
 //
 
 #import "ShowDetailTableViewController.h"
-#import "SeasonDetailTableViewController.h"
 
 @interface ShowDetailTableViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
@@ -34,6 +33,10 @@
                                                name:NSManagedObjectContextObjectsDidChangeNotification
                                              object:self.delegate.context];
     
+    [self updateUI];
+}
+
+-(void)updateUI{
     self.imageView.image = [self.theShow realImage];
     self.categoryLabel.text = self.theShow.category.name;
     self.platformsLabel.text = [self.theShow platformsString];
@@ -42,9 +45,6 @@
     self.linkTextView.text = self.theShow.link;
     self.notesLabel.text = self.theShow.notes;
     self.scoreLabel.text = [self.theShow scoreString];
-}
-
--(void)updateUI{
     [self.tableView reloadData];
 }
 
@@ -96,6 +96,15 @@
             Season *s = [self.theShow.seasons objectAtIndex:indexPath.row-1];
             
             vc.theSeason = s;
+        }
+    }
+    if([segue.identifier isEqualToString:@"ShowEditShow"]){
+        if([segue.destinationViewController isKindOfClass:[EditShowTableViewController class]]){
+            EditShowTableViewController *vc = (EditShowTableViewController *)segue.destinationViewController;
+            
+            TVShow *s = self.theShow;
+            
+            vc.theShow = s;
         }
     }
 

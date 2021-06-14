@@ -12,15 +12,14 @@
 #import "Category+Utils.h"
 #import "Platform+Utils.h"
 #import "OptionsTableViewController.h"
+#import "GenericObj.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ShowListTableViewController : UITableViewController
 
 @property (nonatomic, strong) NSMutableArray *shows;
-@property (nonatomic) int viewType;
-@property (nonatomic, strong) Platform *platform;
-@property (nonatomic, strong) Category *category;
+@property (nonatomic) int elementType;
 @property (nonatomic, strong) id element;
 @property (nonatomic) BOOL showAll;
 @property (nonatomic) int score;

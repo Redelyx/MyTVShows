@@ -1,33 +1,31 @@
 //
-//  AddShowTableViewController.m
+//  EditShowTableViewController.m
 //  MyTVShows
 //
-//  Created by Alice on 24/05/2021.
+//  Created by Alice on 13/06/2021.
 //  Copyright © 2021 Alice. All rights reserved.
 //
 
-#import "AddShowTableViewController.h"
+#import "EditShowTableViewController.h"
 
-@interface AddShowTableViewController ()
+@interface EditShowTableViewController ()
 
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
 @property (weak, nonatomic) IBOutlet UITextField *descriptionField;
 @property (weak, nonatomic) IBOutlet UITextField *linkField;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *scoreSegment;
-@property (weak, nonatomic) IBOutlet UITextField *sNumberField;
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UIPickerView *categoryPicker;
 @property (weak, nonatomic) IBOutlet UILabel *errorLabel;
 
-@property (nonatomic, strong) AppDelegate *delegate;
 @property (nonatomic, strong) NSMutableArray *platforms;
+@property (nonatomic, strong) NSMutableArray *categories;
 @property (nonatomic, strong) NSMutableArray *flags;
 @property (nonatomic, strong) NSMutableArray *platformsTmp;
 
-
 @end
 
-@implementation AddShowTableViewController
+@implementation EditShowTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -37,40 +35,56 @@
     self.nameField.delegate = self;
     self.descriptionField.delegate = self;
     self.linkField.delegate = self;
-    self.sNumberField.delegate = self;
     
     self.platforms = [Platform allPlatforms];
     self.platformsTmp = [[NSMutableArray alloc]init];
-    
-    self.delegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    self.categories = [Category allCategories];
     
     self.flags = [[NSMutableArray alloc]init];
-    
-    for(int i = 0; i<self.platforms.count; i++){
-        self.flags[i] = [NSNumber numberWithInt:0];
-    }
-    
-    [[NSNotificationCenter defaultCenter]addObserver:self
-                                           selector:@selector(updateUI)
-                                               name:NSManagedObjectContextObjectsDidChangeNotification
-                                             object:self.delegate.context];
+        
+    [self updateUI];
     
     UIGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self
                                                                       action:@selector(resignKeyboard)];
     [self.tableView addGestureRecognizer:tap];
     [tap setCancelsTouchesInView:NO];
-    
     [self.scoreSegment addTarget:self
                           action:@selector(updateSegmentImage)
                 forControlEvents:UIControlEventValueChanged];
        
-
 }
 
-#pragma mark - Table view data source
 -(void)updateUI{
+    self.errorLabel.text = @"";
+    self.imageView.image = [self.theShow realImage];
+    self.nameField.text = self.theShow.name;
+    self.descriptionField.text = self.theShow.notes;
+    self.linkField.text = self.theShow.link;
+    self.scoreSegment.selectedSegmentIndex = self.theShow.score - 1;
     [self.categoryPicker reloadAllComponents];
+    [self setFlags];
+    [self setPicker];
     [self.tableView reloadData];
+    [self updateSegmentImage];
+}
+-(void)setPicker{
+    //[self.view addSubview:self.categoryPicker];
+    for(int i = 0; i<self.categories.count; i++){
+        Category *cat = self.categories[i];
+        if([cat.name isEqualToString:self.theShow.category.name]){
+            [self.categoryPicker selectRow:i inComponent:0 animated:YES];
+        }
+    }
+}
+
+-(void)setFlags{
+    for(int i = 0; i<self.platforms.count; i++){
+        if([self.theShow isOnPlatform:self.platforms[i]]){
+            self.flags[i] = [NSNumber numberWithInt: 1];
+        }else{
+            self.flags[i] = [NSNumber numberWithInt: 0];
+        }
+    }
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -78,22 +92,23 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [Platform allPlatforms].count;
+    return self.platforms.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"platformCell" forIndexPath:indexPath];
     
-    Platform *s = [self.platforms objectAtIndex:indexPath.row];
+    Platform *p = [self.platforms objectAtIndex:indexPath.row];
     
-    cell.textLabel.text = s.name;
+    cell.textLabel.text = p.name;
     
     if([self.flags[indexPath.row] intValue] == 0){
         cell.accessoryType = UITableViewCellAccessoryNone;
+    }else{
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
-    
+        
     return cell;
-
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -115,13 +130,13 @@
 }
 
 - (NSInteger)pickerView:(UIPickerView *)thePickerView numberOfRowsInComponent:(NSInteger)component {
-    return [Category allCategories].count;
+    return self.categories.count;
 }
 
 -(NSString *)pickerView:(UIPickerView *)thePickerView
              titleForRow:(NSInteger)row
             forComponent:(NSInteger)component {
-    Category *cat = [[Category allCategories] objectAtIndex:row];
+    Category *cat = [self.categories objectAtIndex:row];
     return cat.name;
 }
 
@@ -150,7 +165,7 @@ didFinishPickingMediaWithInfo:(nonnull NSDictionary<UIImagePickerControllerInfoK
 }
 
 //Action buttons implementation
-- (IBAction)addShow{
+- (IBAction)editShow{
 
     for(int i = 0; i < self.flags.count; i++){
         if([self.flags[i] intValue] == 1){
@@ -158,37 +173,28 @@ didFinishPickingMediaWithInfo:(nonnull NSDictionary<UIImagePickerControllerInfoK
             [self.platformsTmp addObject:plat];
         }
     }
-    if ([self.nameField.text isEqualToString:@""] || [TVShow existShowOfName:self.nameField.text] ||  [self.descriptionField.text isEqualToString:@""] || [self.sNumberField.text isEqualToString:@""] || self.scoreSegment.selectedSegmentIndex == UISegmentedControlNoSegment || self.platformsTmp.count == 0) {
-            if([self.nameField.text isEqualToString:@""] || [TVShow existShowOfName:self.nameField.text]) self.errorLabel.text = @"Insert another name!";
+    if ([self.nameField.text isEqualToString:@""] || [self.descriptionField.text isEqualToString:@""] || self.scoreSegment.selectedSegmentIndex == UISegmentedControlNoSegment || self.platformsTmp.count == 0 || [self.descriptionField.text isEqualToString:@""] || (self.theShow.name != self.nameField.text && [TVShow existShowOfName:self.nameField.text])){
+            if([self.nameField.text isEqualToString:@""] || (self.theShow.name != self.nameField.text && [TVShow existShowOfName:self.nameField.text])) self.errorLabel.text = @"Insert another name!";
             if(self.scoreSegment.selectedSegmentIndex == UISegmentedControlNoSegment) self.errorLabel.text = @"Insert a score!";
             if(self.platformsTmp.count == 0) self.errorLabel.text = @"Insert at least one platform!";
             if([self.descriptionField.text isEqualToString:@""]) self.errorLabel.text = @"Insert a description!";
-            if([self.sNumberField.text isEqualToString:@""]) self.errorLabel.text = @"Insert numebr of Seasons!";
-            self.errorLabel.text = @"Insert all info!";
             [self.nameField setPlaceholder:@"Insert a name"];
             [self.descriptionField setPlaceholder:@"Insert a description"];
-            [self.sNumberField setPlaceholder:@"Insert n of seasons"];
-    } else {
 
+    } else {
         NSString *selectedCategory = [self pickerView:self.categoryPicker
                                           titleForRow:[self.categoryPicker selectedRowInComponent:0]
                                          forComponent:0];
-        
-        NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
-        f.numberStyle =NSNumberFormatterDecimalStyle;
-        NSNumber *n = [f numberFromString:self.sNumberField.text];
-        
-        [TVShow initWithName:self.nameField.text
+
+        [self.theShow editWithName:self.nameField.text
                     category:[Category categoryOfName:selectedCategory]
                    platforms:self.platformsTmp
                         link:self.linkField.text
                        notes:self.descriptionField.text
                        score:[NSNumber numberWithLong:self.scoreSegment.selectedSegmentIndex+1]
-                       image:self.imageView.image
-             numberOfSeasons:n];
-        
-        [self.navigationController popViewControllerAnimated:YES];
-        
+                       image:self.imageView.image];
+
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
@@ -198,7 +204,6 @@ didFinishPickingMediaWithInfo:(nonnull NSDictionary<UIImagePickerControllerInfoK
     [self.nameField resignFirstResponder];
     [self.descriptionField resignFirstResponder];
     [self.linkField resignFirstResponder];
-    [self.sNumberField resignFirstResponder];
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
@@ -208,10 +213,12 @@ didFinishPickingMediaWithInfo:(nonnull NSDictionary<UIImagePickerControllerInfoK
     else if (textField == self.descriptionField){
         [self.linkField becomeFirstResponder];
     }
-    else if(textField == self.linkField){
-        [self.sNumberField becomeFirstResponder];
-    }
     [textField resignFirstResponder];
     return YES;
 }
+
+- (IBAction)cancel:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 @end

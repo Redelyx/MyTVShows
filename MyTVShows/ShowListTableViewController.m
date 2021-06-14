@@ -30,66 +30,22 @@
                                                name:@"ListChanged!"
                                              object:nil];
     
-    [[NSNotificationCenter defaultCenter]addObserver:self
-                                           selector:@selector(popViewController)
-                                               name:@"ItemDeleted!"
-                                             object:nil];
-    
 }
 -(void)popViewController{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(NSMutableArray *)pickList{
-    /*if(self.element ||  self.showAll){
-        if([self.element respondsToSelector:@selector(name)]){
-            if([Category categoryOfName:[self.element name]] || [Platform platformOfName:[self.element name]]){
-                return [self.element allShows];
-            }else{
-                [self.navigationController popViewControllerAnimated:YES];
-                return [[NSArray arrayWithObject:@"Empty"]mutableCopy];
-            }
-        }else{
-            if([self.element isKindOfClass:[NSNumber class]]){
-                return [TVShow allShowsWithScore:self.element];
-            }
-            else return [TVShow allShows];
-        }
-    }
-    else{
-        [self.navigationController popViewControllerAnimated:YES];
-        return [[NSArray arrayWithObject:@"Empty"]mutableCopy];
-    }*/
-    switch (self.viewType) {
-
-        case 1:
-            if([Category categoryOfName:self.category.name] == nil)
-                [self.navigationController popViewControllerAnimated:YES];
-            else{
-                return [self.category allShows];
-            }
-            
-        case 2:
-            if([Platform platformOfName:self.platform.name] == nil)
-                [self.navigationController popViewControllerAnimated:YES];
-            else{
-                return [self.platform allShows];
-            }
-            
+    switch (self.elementType) {
+        case 0: return [TVShow allShows];
         case 3: return [TVShow allShowsWithScore:[NSNumber numberWithInt:self.score]];
-            
-        default: return [TVShow allShows];
+        default:
+            if(![[self.element class] existElementOfName:[self.element displayName]])
+                [self.navigationController popViewControllerAnimated:YES];
+                return [self.element allShows];
     }
 }
 
--(void)setTitle{
-    switch(self.viewType){
-        case 1:self.title = @"Category"; break;
-        case 2:self.title = @"Platform"; break;
-        case 3:self.title = @"Score"; break;
-        default:self.title = @"MyTVShow"; break;
-    }
-}
 -(void)updateUI{
     self.shows = [self pickList];
     [self.tableView reloadData];
@@ -135,9 +91,8 @@
     if([segue.identifier isEqualToString:@"ShowOptions"]){
         if([segue.destinationViewController isKindOfClass:[OptionsTableViewController class]]){
             OptionsTableViewController *vc = (OptionsTableViewController *)segue.destinationViewController;
-            vc.category = self.category;
-            vc.platform = self.platform;
-            vc.viewType = self.viewType;
+            vc.element = self.element;
+            vc.elementType = self.elementType;
             vc.shows = self.shows;
         }
     }

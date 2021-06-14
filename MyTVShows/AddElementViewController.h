@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Platform+Utils.h"
 #import "Category+Utils.h"
+#import "GenericObj.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -16,8 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic) int viewType; //0 new, 1 edit;
 @property (nonatomic) int elementType;
-@property (nonatomic, strong) Platform *platform;
-@property (nonatomic, strong) Category *category;
+@property (nonatomic, strong) id element;
 
 @end
 

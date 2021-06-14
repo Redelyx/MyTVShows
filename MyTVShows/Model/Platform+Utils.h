@@ -9,10 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "AppDelegate.h"
 #import "Platform+CoreDataProperties.h"
+#import "GenericObj.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Platform (Utils)
+@interface Platform (Utils) <GenericObj>
 
 +(Platform *)initWithName:(NSString *)name;
 +(NSMutableArray *)allPlatforms;
@@ -24,6 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)setNewName:(NSString *)name;
 +(Platform *)elementOfName:(NSString *)name;
 -(NSString *)displayName;
++(BOOL)existElementOfName:(NSString *)name;
+-(NSString *)objectName;
 @end
 
 NS_ASSUME_NONNULL_END

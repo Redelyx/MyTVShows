@@ -16,5 +16,7 @@
 -(void)setNewName:(NSString *)name;
 +(id *)elementOfName:(NSString *)name;
 -(NSString *)displayName;
++(BOOL)existElementOfName:(NSString *)name;
+-(NSString *)objectName;
 
 @end

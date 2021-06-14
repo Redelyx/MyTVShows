@@ -19,24 +19,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.delegate = self;
-    
-    self.appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
 }
 
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated{
     if([viewController isKindOfClass:[ShowListTableViewController class]]){
         ShowListTableViewController *vController = (ShowListTableViewController *)viewController;
-        vController.viewType = self.viewType;
+        vController.elementType = self.elementType;
         vController.shows = [TVShow allShows];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"ListChanged!" object:self];
-        NSLog(@"NC %d", self.viewType);
+        NSLog(@"NC %d", self.elementType);
 
     }
     if([viewController isKindOfClass:[ManageElementTableViewController class]]){
         ManageElementTableViewController *vController = (ManageElementTableViewController *)viewController;
-        vController.elementType = self.viewType;
+        vController.elementType = self.elementType;
         vController.title = [self setTitle];
-        switch(self.viewType){
+        switch(self.elementType){
             case 1: vController.elements = [Category allCategories];  break;
             case 2: vController.elements = [Platform allPlatforms]; break;
             case 3: vController.elements = [self myIntArray]; break;
@@ -56,7 +54,7 @@
 }
 
 -(NSString *)setTitle{
-    switch(self.viewType){
+    switch(self.elementType){
         case 1:return @"Categories";
         case 2:return @"Platforms";
         case 3:return @"Score";

@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MainNavigationController : UINavigationController <UINavigationControllerDelegate>
 
-@property (nonatomic) int viewType;
+@property (nonatomic) int elementType;
 
 @end
 

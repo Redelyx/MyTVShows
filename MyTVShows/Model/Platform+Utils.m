@@ -24,7 +24,7 @@
     return allPlatforms;
 }
 
-+(BOOL)existPlatformOfName:(NSString *)name{
++(BOOL)existElementOfName:(NSString *)name;{
     if(![self platformOfName:name]) return NO;
     else return YES;
 }
@@ -75,6 +75,14 @@
 
 +(Platform *)elementOfName:(NSString *)name{
     return [Platform platformOfName:name];
+}
+
+-(NSString *)objectName{
+    return @"Platform";
+}
+
+-(NSString *)displayName{
+    return self.name;
 }
 
 @end

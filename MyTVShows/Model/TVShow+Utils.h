@@ -27,6 +27,14 @@ NS_ASSUME_NONNULL_BEGIN
                   image:(UIImage *)image
         numberOfSeasons:(NSNumber *)sNumber;
 
+-(void)editWithName:(NSString *)name
+           category:(Category *)category
+          platforms:(NSMutableArray *)platforms
+               link:(NSString *)link
+              notes:(NSString *)notes
+              score:(NSNumber *)score
+              image:(UIImage *)image;
+
 -(void)deleteTVShow;
 
 +(NSMutableArray *)allShows;
@@ -54,6 +62,8 @@ NS_ASSUME_NONNULL_BEGIN
 -(NSString *)platformsString;
 
 -(NSString *)showCSVString;
+
+-(BOOL)isOnPlatform:(Platform *)platform;
 
 @end
 

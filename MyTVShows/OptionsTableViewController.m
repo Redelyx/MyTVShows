@@ -29,31 +29,15 @@
 }
 
 -(void)updateUI{
-    /*switch (self.viewType) {
+    switch (self.elementType) {
         case 0: [self.editCell setHidden:YES]; break;
-        case 1: self.editCell.textLabel.text = [NSString stringWithFormat:@"Edit category: %@", self.category.name];
-        case 2: self.editCell.textLabel.text = [NSString stringWithFormat:@"Edit platform: %@", self.platform.name];
         case 3: [self.editCell setHidden:YES]; break;
-        default: [self.editCell setHidden:YES]; break;
-    }*/
-    switch (self.viewType) {
-        case 0: [self.editCell setHidden:YES]; break;
-        case 1:
-            if([Category categoryOfName:self.category.name] == nil)
+        default:
+            if(![[self.element class] existElementOfName:[self.element displayName]])
                 [self.navigationController popViewControllerAnimated:YES];
             else{
-                self.editCell.textLabel.text = [NSString stringWithFormat:@"Edit category: %@", self.category.name];
+                self.editCell.textLabel.text = [NSString stringWithFormat:@"Edit %@: %@", [self.element objectName], [self.element displayName]];
             }
-            break;
-        case 2:
-            if([Platform platformOfName:self.platform.name] == nil)
-                [self.navigationController popViewControllerAnimated:YES];
-            else {
-                self.editCell.textLabel.text = [NSString stringWithFormat:@"Edit platform: %@", self.platform.name];
-            }
-            break;
-        case 3: [self.editCell setHidden:YES]; break;
-        default: [self.editCell setHidden:YES]; break;
     }
 }
 
@@ -70,6 +54,7 @@
 }
 
 -(NSString *)dataFilePath {
+    
     return [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory , NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"shows.csv"];
 }
 
@@ -95,30 +80,12 @@
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-       
-    if([segue.identifier isEqualToString:@"showPlatforms"]){
-        if([segue.destinationViewController isKindOfClass:[ManageElementTableViewController class]]){
-            ManageElementTableViewController *vc = (ManageElementTableViewController *)segue.destinationViewController;
-
-                vc.elementType = 2;
-                [[NSNotificationCenter defaultCenter]postNotificationName:@"ElementChanged!" object:nil];            
-        }
-    }
-    if([segue.identifier isEqualToString:@"showCategories"]){
-        if([segue.destinationViewController isKindOfClass:[ManageElementTableViewController class]]){
-            ManageElementTableViewController *vc = (ManageElementTableViewController *)segue.destinationViewController;
-            
-                vc.elementType = 1;
-                [[NSNotificationCenter defaultCenter]postNotificationName:@"ElementChanged!" object:nil];
-        }
-    }
     if([segue.identifier isEqualToString:@"editElement"]){
         if([segue.destinationViewController isKindOfClass:[AddElementViewController class]]){
             AddElementViewController *vc = (AddElementViewController *)segue.destinationViewController;
             
-            vc.elementType = self.viewType;
-            vc.platform = self.platform;
-            vc.category = self.category;
+            vc.elementType = self.elementType;
+            vc.element = self.element;
             vc.viewType = 1;
 
         }

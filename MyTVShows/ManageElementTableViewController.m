@@ -19,7 +19,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self viewTitle];
     self.appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     
     [[NSNotificationCenter defaultCenter]addObserver:self
@@ -30,26 +29,21 @@
                                             selector:@selector(updateUI)
                                                 name:@"ElementChanged!"
                                               object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self
+                                            selector:@selector(updateUI)
+                                                name:@"ElementDeleted!"
+                                              object:nil];
 
 }
 
 -(void)updateUI{
     switch(self.elementType){
-        case 1: self.elements = [Category allCategories]; self.title = @"Categories";break;
-        case 2: self.elements = [Platform allPlatforms]; self.title = @"Platforms"; break;
-        case 3: self.elements = [self myIntArray]; self.title = @"Score"; break;
+        case 1: self.elements = [Category allCategories]; break;
+        case 2: self.elements = [Platform allPlatforms];  break;
+        case 3: self.elements = [self myIntArray]; break;
         default: self.elements = [NSMutableArray arrayWithObject:@"Error"]; break;
     }
     [self.tableView reloadData];
-}
-
--(void)viewTitle{
-    switch(self.elementType){
-        case 1: self.title = @"Categories"; break;
-        case 2: self.title = @"Platforms";break;
-        case 3: self.title = @"Score"; break;
-        default: break;
-    }
 }
     
 - (NSMutableArray *)myIntArray{
@@ -86,29 +80,19 @@
         }
         else{
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"elementCell" forIndexPath:indexPath];
-            if(self.elementType == 1){
-                //Category *e = [self.elements objectAtIndex:indexPath.row - 1];
-                id e= [self.elements objectAtIndex:indexPath.row - 1];
-                cell.textLabel.text = [e name];
-                return cell;
-            }
-            else{
-                Platform *e = [self.elements objectAtIndex:indexPath.row - 1];
-                cell.textLabel.text = e.name;
-                return cell;
-            }
+            id e = [self.elements objectAtIndex:indexPath.row - 1];
+            cell.textLabel.text = [e displayName];
+            return cell;
         }
     }
 }
 
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if([segue.identifier isEqualToString:@"addElement"]){
         if([segue.destinationViewController isKindOfClass:[AddElementViewController class]]){
             AddElementViewController *vc = (AddElementViewController *)segue.destinationViewController;
-            
             vc.elementType = self.elementType;
             vc.viewType = 0;
             NSLog(@"%i", self.elementType);
@@ -119,30 +103,16 @@
             ShowListTableViewController *vc = (ShowListTableViewController *)segue.destinationViewController;
             
             NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-            /*if([[self.elements objectAtIndex:indexPath.row - 1]respondsToSelector:@selector(name)]){
+            if(self.elementType == 1 || self.elementType == 2){
                 vc.element = [self.elements objectAtIndex:indexPath.row - 1];
                 vc.shows = [vc.element allShows];
-                vc.title = [vc.element name];
-            }else{
-                vc.element = [NSNumber numberWithLong:(int)indexPath.row + 1];
-                [TVShow allShowsWithScore:vc.element];
-                vc.title = [NSString stringWithFormat:@"%@ star", vc.element];
-            }*/
-    
-            if(self.elementType == 1){
-                vc.category = [self.elements objectAtIndex:indexPath.row - 1];
-                vc.shows = [vc.category allShows];
-                vc.title = vc.category.name;
-            }else if (self.elementType == 2){
-                vc.platform = [self.elements objectAtIndex:indexPath.row - 1];
-                vc.shows = [vc.platform allShows];
-                vc.title = vc.platform.name;
+                vc.title = [vc.element displayName];
             }else{
                 vc.score = (int)indexPath.row + 1;
                 [TVShow allShowsWithScore:[NSNumber numberWithInt:vc.score]];
                 vc.title = [NSString stringWithFormat:@"%d star", vc.score];
             }
-            vc.viewType = self.elementType;
+            vc.elementType = self.elementType;
         }
     }
     

@@ -24,7 +24,7 @@
     return allCategories;
 }
 
-+(BOOL)existCategoryOfName:(NSString *)name{
++(BOOL)existElementOfName:(NSString *)name;{
     if(![self categoryOfName:name]) return NO;
     else return YES;
 }
@@ -65,6 +65,14 @@
 
 +(Category *)elementOfName:(NSString *)name{
     return [Category categoryOfName:name];
+}
+
+-(NSString *)objectName{
+    return @"Category";
+}
+
+-(NSString *)displayName{
+    return self.name;
 }
 
 @end

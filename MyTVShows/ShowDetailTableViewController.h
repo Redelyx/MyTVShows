@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "TVShow+Utils.h"
 #import "Category+CoreDataProperties.h"
+#import "EditShowTableViewController.h"
+#import "SeasonDetailTableViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

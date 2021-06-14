@@ -9,10 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "Category+CoreDataClass.h"
 #import "AppDelegate.h"
+#import "GenericObj.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Category (Utils)
+@interface Category (Utils) <GenericObj>
 
 +(Category *)initWithName:(NSString *)name;
 +(NSMutableArray *)allCategories;
@@ -23,7 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)deleteElement;
 +(Category *)elementOfName:(NSString *)name;
 -(NSString *)displayName;
-
++(BOOL)existElementOfName:(NSString *)name;
+-(NSString *)objectName;
 
 @end
 

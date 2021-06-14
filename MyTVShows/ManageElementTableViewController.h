@@ -11,6 +11,7 @@
 #import "Platform+Utils.h"
 #import "AddElementViewController.h"
 #import "ShowListTableViewController.h"
+#import "GenericObj.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
