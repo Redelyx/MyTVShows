@@ -27,9 +27,11 @@
                                               object:self.delegate.context];
 }
 
+
 -(void)updateUI{
     [self.tableView reloadData];
 }
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -51,6 +53,20 @@
     
     cell.textLabel.text = s.name;
     
+    NSMutableString *score;
+    NSMutableString *watch;
+    if(s.score == -1 || s.score == 0){
+        score = [NSMutableString stringWithFormat:@"Not Rated"];
+    }else{
+        score = [NSMutableString stringWithFormat:@"%lld star(s)", s.score];
+    }
+    if(s.watched){
+        watch = [@"watched" mutableCopy];
+    }else{
+        watch = [@"not watched" mutableCopy];
+    }
+
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@, %@", score, watch];
     return cell;
 }
 

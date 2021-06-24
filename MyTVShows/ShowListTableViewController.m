@@ -20,7 +20,7 @@
     
     self.delegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     
-    [[NSNotificationCenter defaultCenter]addObserver:self
+    /*[[NSNotificationCenter defaultCenter]addObserver:self
                                            selector:@selector(updateUI)
                                                name:NSManagedObjectContextObjectsDidChangeNotification
                                              object:_delegate.context];
@@ -28,9 +28,15 @@
     [[NSNotificationCenter defaultCenter]addObserver:self
                                            selector:@selector(updateUI)
                                                name:@"ListChanged!"
-                                             object:nil];
+                                             object:nil];*/
     
 }
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self updateUI];
+}
+
 -(void)popViewController{
     [self.navigationController popViewControllerAnimated:YES];
 }

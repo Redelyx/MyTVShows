@@ -39,6 +39,8 @@
     self.linkField.delegate = self;
     self.sNumberField.delegate = self;
     
+    self.errorLabel.text = @"";
+    
     self.platforms = [Platform allPlatforms];
     self.platformsTmp = [[NSMutableArray alloc]init];
     

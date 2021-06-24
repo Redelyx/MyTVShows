@@ -54,8 +54,9 @@
 }
 
 - (IBAction)addSeason:(id)sender {
-    NSLog(@"Add Episode pressed");
     [self.theShow addSeason];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[[self.theShow countSeasons] intValue] inSection:0];
+    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
 }
 
 #pragma mark - Table view data source
@@ -80,6 +81,7 @@
         Season *s = [self.theShow.seasons objectAtIndex:indexPath.row-1];
         
         cell.textLabel.text = s.name;
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%lu episode(s)", s.episodes.count];
         
         return cell;
     }

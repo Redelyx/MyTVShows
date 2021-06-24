@@ -28,6 +28,7 @@
     [self updateUI];
 }
 
+
 -(void)updateUI{
     switch (self.elementType) {
         case 0: [self.editCell setHidden:YES]; break;
