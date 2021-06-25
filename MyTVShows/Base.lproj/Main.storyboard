@@ -815,7 +815,7 @@
                                     </connections>
                                 </button>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="hGN-ZK-itc">
-                                    <rect key="frame" x="20" y="260" width="373" height="34"/>
+                                    <rect key="frame" x="20" y="259.33333333333331" width="373" height="34"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="34" id="lWd-jZ-EcA"/>
                                     </constraints>
@@ -823,7 +823,7 @@
                                     <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                 </textField>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="0Ma-5g-8kJ">
-                                    <rect key="frame" x="20.666666666666657" y="304.33333333333331" width="373" height="34"/>
+                                    <rect key="frame" x="20.666666666666657" y="303.66666666666669" width="373" height="34"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="34" id="J9Q-8W-70g"/>
                                     </constraints>
@@ -831,7 +831,7 @@
                                     <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                 </textField>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wDH-AW-wt5">
-                                    <rect key="frame" x="20" y="348.33333333333331" width="79.333333333333329" height="21"/>
+                                    <rect key="frame" x="20" y="347.66666666666669" width="79.333333333333329" height="21"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="21" id="eIm-BA-7us"/>
                                     </constraints>
@@ -840,13 +840,13 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zhJ-Dq-vwN">
-                                    <rect key="frame" x="20.666666666666657" y="379.33333333333331" width="373" height="84"/>
+                                    <rect key="frame" x="20.666666666666657" y="378.66666666666669" width="373" height="84"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="84" id="zwr-s9-rI3"/>
                                     </constraints>
                                 </pickerView>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Link" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="hRQ-ld-Htb">
-                                    <rect key="frame" x="20.666666666666657" y="473.33333333333331" width="373" height="34"/>
+                                    <rect key="frame" x="20.666666666666657" y="472.66666666666669" width="373" height="34"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="34" id="GDV-X0-eWY"/>
                                     </constraints>
@@ -854,13 +854,13 @@
                                     <textInputTraits key="textInputTraits" keyboardType="URL" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                 </textField>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FdF-0d-BI5">
-                                    <rect key="frame" x="19.999999999999996" y="522.66666666666663" width="51.666666666666657" height="19.666666666666629"/>
+                                    <rect key="frame" x="19.999999999999996" y="522" width="51.666666666666657" height="19.666666666666629"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <segmentedControl opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="right" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="Tug-zZ-7Xz">
-                                    <rect key="frame" x="85" y="517" width="308" height="32"/>
+                                    <rect key="frame" x="85" y="516.33333333333337" width="308" height="32"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="31" id="7Uu-Qr-bDA"/>
                                     </constraints>
@@ -873,12 +873,12 @@
                                     </segments>
                                 </segmentedControl>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Number of season(s)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DaY-HF-b8q">
-                                    <rect key="frame" x="20.666666666666657" y="555.66666666666663" width="373" height="33.333333333333371"/>
+                                    <rect key="frame" x="20.666666666666657" y="555" width="373" height="34"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits" keyboardType="ASCIICapableNumberPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                 </textField>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Afv-Lh-OFz">
-                                    <rect key="frame" x="186" y="229.33333333333334" width="42" height="21"/>
+                                    <rect key="frame" x="186" y="229.33333333333334" width="42" height="20.333333333333343"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" red="1" green="0.01208707165" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -927,6 +927,7 @@
                                 <constraint firstItem="wDH-AW-wt5" firstAttribute="top" secondItem="0Ma-5g-8kJ" secondAttribute="bottom" constant="10" id="unE-zs-16L"/>
                                 <constraint firstItem="0Ma-5g-8kJ" firstAttribute="top" secondItem="hGN-ZK-itc" secondAttribute="bottom" constant="10.333333333333314" id="vL5-VQ-alH"/>
                                 <constraint firstItem="DaY-HF-b8q" firstAttribute="width" secondItem="hRQ-ld-Htb" secondAttribute="width" id="w5Q-wg-Te8"/>
+                                <constraint firstItem="DaY-HF-b8q" firstAttribute="height" secondItem="hRQ-ld-Htb" secondAttribute="height" id="xhd-mt-eMl"/>
                                 <constraint firstItem="Kfy-Kb-E9a" firstAttribute="top" secondItem="Hfk-bb-HFT" secondAttribute="bottom" constant="10" id="yeA-ss-Wqt"/>
                                 <constraint firstItem="hGN-ZK-itc" firstAttribute="leading" secondItem="ka1-Q9-ief" secondAttribute="leading" constant="20" id="zNf-7k-vbm"/>
                             </constraints>

@@ -173,8 +173,8 @@ didFinishPickingMediaWithInfo:(nonnull NSDictionary<UIImagePickerControllerInfoK
             [self.platformsTmp addObject:plat];
         }
     }
-    if ([self.nameField.text isEqualToString:@""] || [self.descriptionField.text isEqualToString:@""] || self.scoreSegment.selectedSegmentIndex == UISegmentedControlNoSegment || self.platformsTmp.count == 0 || [self.descriptionField.text isEqualToString:@""] || (self.theShow.name != self.nameField.text && [TVShow existShowOfName:self.nameField.text])){
-            if([self.nameField.text isEqualToString:@""] || (self.theShow.name != self.nameField.text && [TVShow existShowOfName:self.nameField.text])) self.errorLabel.text = @"Insert another name!";
+    if ([self.nameField.text isEqualToString:@""] || [self.descriptionField.text isEqualToString:@""] || self.scoreSegment.selectedSegmentIndex == UISegmentedControlNoSegment || self.platformsTmp.count == 0 || [self.descriptionField.text isEqualToString:@""]){
+            /*if([self.nameField.text isEqualToString:@""] || [TVShow existShowOfName:self.nameField.text]) self.errorLabel.text = @"Insert another name!";*/
             if(self.scoreSegment.selectedSegmentIndex == UISegmentedControlNoSegment) self.errorLabel.text = @"Insert a score!";
             if(self.platformsTmp.count == 0) self.errorLabel.text = @"Insert at least one platform!";
             if([self.descriptionField.text isEqualToString:@""]) self.errorLabel.text = @"Insert a description!";

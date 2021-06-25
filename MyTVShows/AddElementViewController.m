@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *addLabel;
 @property (strong, nonatomic) IBOutlet UILabel *errorLabel;
 @property (weak, nonatomic) IBOutlet UIButton *trashButton;
+@property (strong, nonatomic) NSString *dummyName;
 
 @end
 
@@ -21,7 +22,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.dummyName = @" ";
     [self updateUI];
+
     
 }
 
@@ -37,8 +40,8 @@
 -(void)updateUI{
     if(self.viewType == 0){
         [self.trashButton setEnabled:NO];
-        if(self.elementType == 1) self.element = [[Category alloc]init];
-        else self.element = [[Platform alloc]init];
+        if(self.elementType == 1) self.element = [Category initWithName:self.dummyName];
+        else self.element = [Platform initWithName:self.dummyName];
         self.addLabel.text = [NSString stringWithFormat: @"Add new %@ name:",[self.element objectName]] ;
     }
     else{
@@ -50,7 +53,16 @@
 }
 
 - (IBAction)cancel:(id)sender {
+    if([Platform existElementOfName:self.dummyName]){
+        Platform *tmp = [Platform elementOfName:self.dummyName];
+        [tmp deleteElement];
+    }
+    if([Category existElementOfName:self.dummyName]){
+        Category *tmp = [Category elementOfName:self.dummyName];
+        [tmp deleteElement];
+    }
     [self dismissViewControllerAnimated:YES completion:nil];
+
 }
 
 -(IBAction)saveRequest:(id)sender {
